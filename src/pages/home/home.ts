@@ -23,7 +23,6 @@ export class HomePage {
   ionViewWillEnter(){
     this.CategoriesProvider.getCategories().subscribe(response =>{
       this.list = response;
-      console.log("list-->", this.list);
     });
   }
 

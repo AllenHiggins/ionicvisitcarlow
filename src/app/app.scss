@@ -1,11 +1,49 @@
 // App Global Sass
+*{
+    font-family:Palatino, Verdana, sans-serif;
+}
+
+.headerTitle{
+    text-shadow: 1px 2px 1px black;
+}
+
+.haederImg{
+    position: absolute;
+    left:0;
+    margin-top: -25px;
+    opacity: 0.3;
+}
+
+.clover{
+    width: 30px;
+    height: 30px;
+    margin-left:20px;
+}
+
+.iconList{
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    margin-top:-5px
+}
+
+.listTextIcon{
+    margin-left:50px;
+}
+
+.hT{
+    position: absolute;
+    color:#fff;
+    margin-left: 90px;
+}
+
 .vcImg{
-    height: 150px;
+    height: 180px;
     min-width: 100%;
 }
 
 img.cardImg{
-    height: 200px;
+    height: 150px;
 }
 
 ion-card-title{
