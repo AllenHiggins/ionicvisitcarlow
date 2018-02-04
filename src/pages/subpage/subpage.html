@@ -1,19 +1,14 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Vist Carlow</ion-title>
+    <ion-title>{{title}}</ion-title>
   </ion-navbar>
 </ion-header>
-<br />
-<br />
-<ion-content padding *ngIf="list">  
+<ion-content padding *ngIf="list">
   <ion-grid>
     <ion-row>
-      <ion-col col-12>  
+      <ion-col col-12>
         <ion-card class="round"
-          *ngFor="let item of list.Catagories" 
+          *ngFor="let item of list.Subcategories" 
           (click)="itemTapped($event, item)"
         >
           <img src="{{item.image}}" class="cardImg"/>

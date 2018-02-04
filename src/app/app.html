@@ -1,12 +1,13 @@
 <ion-menu [content]="content">
   <ion-header>
     <ion-toolbar>
-      <ion-title>Menu</ion-title>
+      <ion-title>Visit Carlow</ion-title>
     </ion-toolbar>
   </ion-header>
-
+  
   <ion-content>
     <ion-list>
+      <img src='../assets/imgs/dolmen.jpg' class='vcImg'>
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
         {{p.title}}
       </button>
