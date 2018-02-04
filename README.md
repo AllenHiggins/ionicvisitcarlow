@@ -1,2 +1,2 @@
 # ionicvisitcarlow
-angluar and ionic 3 app for year 4 project visit carlow
+Angluar 4 and Ionic 3 app for final year project - visit carlow
