@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { PlacesProvider } from '../../providers/places/places';
+import { ViewListingPage } from '../../pages/view-listing/view-listing';
 
 @IonicPage()
 @Component({
@@ -11,6 +12,7 @@ export class ListingsPage {
 
   list: any;
   title: string;
+  forLoop: string;
 
   constructor(
     public navCtrl: NavController, 
@@ -25,6 +27,13 @@ export class ListingsPage {
     this.PlacesProvider.getListings(this.title).subscribe(response =>{
       this.list = response;
       console.log(this.list);
+    });
+  }
+
+  itemTapped(event, item) {
+    console.log(item.id);
+    this.navCtrl.push(ViewListingPage, {
+        id: item.id
     });
   }
 

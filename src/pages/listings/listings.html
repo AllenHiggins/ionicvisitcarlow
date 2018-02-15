@@ -3,8 +3,24 @@
     <ion-title>{{title}}</ion-title>
   </ion-navbar>
 </ion-header>
-
-
-<ion-content padding>
-
+<br />
+<br />
+<ion-content padding *ngIf="list" class="animated slideInUp">  
+  <ion-grid>
+    <ion-row>
+      <ion-col col-sm-12 col-md-3>  
+        <ion-card class="round"
+          *ngFor="let item of list.cards"
+          (click)="itemTapped($event, item)"
+        >
+          <img src="{{item.image}}" class="cardImg"/>
+          <ion-card-content>
+            <ion-card-title>
+              {{item.name}}
+            </ion-card-title>
+          </ion-card-content>
+        </ion-card> 
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

@@ -26,17 +26,19 @@ export class MyApp {
     public splashScreen: SplashScreen) {
     this.initializeApp();
     
+    const path = 'assets/imgs/';
+
     this.list =[
-      {title:'Places',icon:"../assets/imgs/places.png"},
-      {title:'Stay',icon:"../assets/imgs/stay.png"},
-      {title:'See',icon:"../assets/imgs/see.png"},
-      {title:'To Do',icon:"../assets/imgs/todo.png"},
-      {title:'Eating Out',icon:"../assets/imgs/eat.png"},
-      {title:'Events',icon:"../assets/imgs/event.png"},
-      {title:'Shopping',icon:"../assets/imgs/shopping.png"},
-      {title:'Useful Contacts',icon:"../assets/imgs/contacts.png"},
-      {title:'Medical',icon:"../assets/imgs/medical.png"},
-      {title:'Entertainment',icon:"../assets/imgs/enter.png"}
+      {title:'Places',icon:path+"places.png"},
+      {title:'Stay',icon:path+"stay.png"},
+      {title:'See',icon:path+"see.png"},
+      {title:'To Do',icon:path+"todo.png"},
+      {title:'Eating Out',icon:path+"eat.png"},
+      {title:'Events',icon:path+"event.png"},
+      {title:'Shopping',icon:path+"shopping.png"},
+      {title:'Useful Contacts',icon:path+"contacts.png"},
+      {title:'Medical',icon:path+"medical.png"},
+      {title:'Entertainment',icon:path+"enter.png"}
     ]
 
     // used for an example of ngFor and navigation

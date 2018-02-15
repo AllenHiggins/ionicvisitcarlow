@@ -8,6 +8,8 @@ import { HomePage } from '../pages/home/home';
 import { SubpagePage } from '../pages/subpage/subpage';
 import { ListingsPage } from '../pages/listings/listings';
 import { EventsPage } from '../pages/events/events';
+import { ViewListingPage } from '../pages/view-listing/view-listing';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -15,6 +17,11 @@ import { CategoriesProvider } from '../providers/categories/categories';
 import { SubCategoriesProvider } from '../providers/sub-categories/sub-categories';
 import { PlacesProvider } from '../providers/places/places';
 import { EventsProvider } from '../providers/events/events';
+import { ListingProvider } from '../providers/listing/listing';
+import { SubListingCardDataProvider } from '../providers/sub-listing-card-data/sub-listing-card-data';
+import { ParallaxModule } from 'ionic-parallax';
+import { ElasticHeaderModule } from "ionic2-elastic-header/dist";
+import { MedialinksProvider } from '../providers/medialinks/medialinks';
 
 @NgModule({
   declarations: [
@@ -23,11 +30,14 @@ import { EventsProvider } from '../providers/events/events';
     SubpagePage,
     ListingsPage,
     EventsPage,
+    ViewListingPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule,
+    ParallaxModule,
+    ElasticHeaderModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -36,6 +46,7 @@ import { EventsProvider } from '../providers/events/events';
     SubpagePage,
     ListingsPage,
     EventsPage,
+    ViewListingPage
   ],
   providers: [
     StatusBar,
@@ -44,7 +55,11 @@ import { EventsProvider } from '../providers/events/events';
     CategoriesProvider,
     SubCategoriesProvider,
     PlacesProvider,
-    EventsProvider
+    EventsProvider,
+    ListingProvider,
+    SubListingCardDataProvider,
+    MedialinksProvider,
+    InAppBrowser
   ]
 })
 export class AppModule {}

@@ -3,15 +3,15 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button> 
-    <ion-title>Vist Carlow</ion-title>
+    <ion-title>Home</ion-title>
   </ion-navbar>
 </ion-header>
 <br />
 <br />
-<ion-content padding *ngIf="list">  
+<ion-content padding *ngIf="list" class="animated slideInUp">  
   <ion-grid>
     <ion-row>
-      <ion-col col-12>  
+      <ion-col col-sm-12 col-md-3>  
         <ion-card class="round"
           *ngFor="let item of list.Catagories" 
           (click)="itemTapped($event, item)"

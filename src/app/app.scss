@@ -52,4 +52,24 @@ ion-card-title{
 
 .round{
     border-radius: 5px;
+    flex-wrap: nowrap;
+}
+
+.viewListingImg{
+    min-width: 100%;
+    max-height: 220px;
+    box-shadow: 1px 2px 1px grey;
+}
+
+.viewListingInfo{
+    width: 80%;
+    display: block;
+    margin: auto;
+    text-align: justify;
+    font-size: 16px;
+    line-height: 2;
+}
+
+.viewListHeader{
+    background-color: blanchedalmond;
 }

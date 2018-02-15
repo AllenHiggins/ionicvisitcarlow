@@ -1,18 +1,21 @@
-<ion-menu [content]="content">
+<ion-menu [content]="content" >
   
-  
-  <ion-content>
+  <ion-content >
     <ion-list>
-      <h2 class='hT'>Visit Carlow</h2>
-      <img src='../assets/imgs/dolmen.jpg' class='vcImg'>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-          <img src='../assets/imgs/home-icon.png' class='iconList'/>
-          <span class='listTextIcon'>{{p.title}}</span>
-      </button>
-      <div menuClose ion-item *ngFor="let item of list">
-        <div (click)="itemTapped($event,item.title)">
-          <img src='{{item.icon}}' class='iconList'/>
-          <div class='listTextIcon'>{{item.title}}</div>
+      <div >
+        <h2 class="hT animated zoomIn">Visit Carlow</h2>
+        <img src='assets/imgs/dolmen.jpg' class='vcImg'>
+      </div>
+      <div class="animated fadeInLeft">
+        <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+            <img src='assets/imgs/home-icon.png' class='iconList'/>
+            <span class='listTextIcon'>{{p.title}}</span>
+        </button>
+        <div menuClose ion-item *ngFor="let item of list">
+          <div (click)="itemTapped($event,item.title)" class="animated fadeInLeft">
+            <img src='{{item.icon}}' class='iconList'/>
+            <div class='listTextIcon'>{{item.title}}</div>
+          </div>
         </div>
       </div>
     </ion-list>

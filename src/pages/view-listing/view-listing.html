@@ -1,0 +1,51 @@
+<ion-header [elasticHeader]="myContent" class="h">
+  <ion-navbar>
+    <ion-title>{{title}}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content fullscreen #myContent  class="animated bounceInLeft">
+  <div class="par">
+    <img src={{imagePath}} class="viewListingImg"/>
+  </div>
+  <div class='viewListingInfo'>
+    <div class="animated bounceInLeft mediaLinks">
+      <ul>
+        <li>
+          <div *ngIf="website" (click)="openWebBrowser('website')"> 
+            <ion-icon ios="ios-globe" md="md-globe"></ion-icon>
+          </div>
+        </li>
+        <li>
+          <div *ngIf="facebook" (click)="openWebBrowser('faceBook')">
+            <ion-icon name="logo-facebook"></ion-icon>
+          </div>
+        </li>  
+        <li>
+          <div *ngIf="twitter" (click)="openWebBrowser('twitter')">
+            <ion-icon name="logo-twitter"></ion-icon>
+          </div>
+        </li>
+        <li>
+          <div *ngIf="instagram" (click)="openWebBrowser('instagram')"><ion-icon name="logo-instagram"></ion-icon></div>
+        </li>
+        <li>
+           <div class="heart" (click)="addToFabs()">
+              <ion-icon class="heart" *ngIf="!like" ios="ios-heart-outline" md="md-heart-outline"></ion-icon>
+              <ion-icon class="heart animated rubberBand" *ngIf="like" ios="ios-heart" md="md-heart"></ion-icon>
+          </div> 
+        </li>
+      </ul>
+    </div>
+   <br />
+   <br />
+   <button ion-button (click)="openModal()">open</button>
+    <h1>{{title}}</h1> 
+    <p class="xtra">
+      {{address}}
+      <br />
+      Phone: {{phone}}
+    </p>
+    <hr />
+    <p class="txt animated fadeInUp">{{text}}</p>  
+  </div>
+</ion-content>
