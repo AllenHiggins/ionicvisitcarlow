@@ -11,6 +11,9 @@
     <div class="animated bounceInLeft mediaLinks">
       <ul>
         <li>
+            <ion-icon ios="ios-map" md="ios-map-outline" (click)="openModal()"></ion-icon>
+        </li>
+        <li>
           <div *ngIf="website" (click)="openWebBrowser('website')"> 
             <ion-icon ios="ios-globe" md="md-globe"></ion-icon>
           </div>
@@ -36,9 +39,8 @@
         </li>
       </ul>
     </div>
-   <br />
-   <br />
-   <button ion-button (click)="openModal()">open</button>
+    <br />
+    <br />
     <h1>{{title}}</h1> 
     <p class="xtra">
       {{address}}
