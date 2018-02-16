@@ -22,6 +22,7 @@ import { SubListingCardDataProvider } from '../providers/sub-listing-card-data/s
 import { ParallaxModule } from 'ionic-parallax';
 import { ElasticHeaderModule } from "ionic2-elastic-header/dist";
 import { MedialinksProvider } from '../providers/medialinks/medialinks';
+import { FabsProvider } from '../providers/fabs/fabs';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { MedialinksProvider } from '../providers/medialinks/medialinks';
     ListingProvider,
     SubListingCardDataProvider,
     MedialinksProvider,
-    InAppBrowser
+    InAppBrowser,
+    FabsProvider
   ]
 })
 export class AppModule {}

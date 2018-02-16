@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angu
 import { ListingProvider } from '../../providers/listing/listing';
 import { MedialinksProvider } from '../../providers/medialinks/medialinks';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { FabsProvider } from '../../providers/fabs/fabs';
 
 @IonicPage()
 @Component({
@@ -10,7 +11,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
   templateUrl: 'view-listing.html',
 })
 export class ViewListingPage {
-  like: boolean;
+  fabs: boolean;
   media: any;
   listing: any;
   imagePath: string;
@@ -32,9 +33,10 @@ export class ViewListingPage {
     public ListingProvider: ListingProvider,
     public MedialinksProvider: MedialinksProvider,
     public InAppBrowser: InAppBrowser,
-    public ModalController: ModalController
+    public ModalController: ModalController,
+    public FabsProvider: FabsProvider
   ) {
-    this.like = false;
+    this.fabs = false;
   }
 
   ionViewWillEnter(){
@@ -48,7 +50,6 @@ export class ViewListingPage {
       this.long = this.listing.Listing[0].longitude;
       this.phone = this.listing.Listing[0].phone;
       this.text = this.listing.Listing[0].text;
-      console.log(this.listing);
     });
 
     this.MedialinksProvider.getMediaLinks(this.id).subscribe(respone =>{
@@ -57,8 +58,10 @@ export class ViewListingPage {
       this.facebook = this.media.Media[0].facebook;
       this.twitter = this.media.Media[0].twitter;
       this.instagram = this.media.Media[0].instagram;
-      console.log("website: ",this.website);
     });
+
+    this.fabs = this.FabsProvider.isInList(this.media);
+    console.log(this.fabs);
   }
 
   openWebBrowser(link){
@@ -81,8 +84,12 @@ export class ViewListingPage {
   }
 
   addToFabs(){
-      this.like = !this.like;
-      console.log(this.like);
+      this.fabs = !this.fabs;
+      if(this.fabs){
+         this.FabsProvider.addToFabsList(this.media);
+      }else{
+        this.FabsProvider.removeFromList(this.media);
+      }
   }
 
   openModal(){
@@ -93,11 +100,6 @@ export class ViewListingPage {
     const modal = this.ModalController.create("ModalPage",{data: mapData} );
     modal.present();
   }
-/////////////////////////////////////////////////////////
-////////////       FROM API    /////////////////////////
-///////       NEED ALL MEDIA LINKS   //////////////////     
-/////////////////////////////////////////////////////
-////////////////////////////////////////////////////
 
 
 }
