@@ -39,8 +39,9 @@ export class ViewListingPage {
     this.fabs = false;
   }
 
-  ionViewWillEnter(){
+  ionViewWillEnter(){    
     this.id = this.navParams.get('id');
+    this.fabs = this.FabsProvider.isInList(this.id);
     this.ListingProvider.getListings(this.id).subscribe(response =>{
       this.listing = response;
       this.title = this.listing.Listing[0].name;
@@ -60,8 +61,13 @@ export class ViewListingPage {
       this.instagram = this.media.Media[0].instagram;
     });
 
-    this.fabs = this.FabsProvider.isInList(this.media);
-    console.log(this.fabs);
+  //////////////////////just testing getting fabs list////////////////////////
+
+    this.FabsProvider.getFabsList()
+    .then((list) => {
+      console.log("Get list: ",list);
+    });
+    /////////////////////////////////////////////////////////////////////////////
   }
 
   openWebBrowser(link){
@@ -85,10 +91,15 @@ export class ViewListingPage {
 
   addToFabs(){
       this.fabs = !this.fabs;
+      const info = {
+        "id": this.id,
+        "title": this.title,
+        "imagePath": this.imagePath
+      }
       if(this.fabs){
-         this.FabsProvider.addToFabsList(this.media);
+         this.FabsProvider.addToFabsList(info);
       }else{
-        this.FabsProvider.removeFromList(this.media);
+        this.FabsProvider.removeFromList(this.id);
       }
   }
 
