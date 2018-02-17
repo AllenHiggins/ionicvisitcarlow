@@ -11,6 +11,7 @@ import { FabsProvider } from '../../providers/fabs/fabs';
   templateUrl: 'view-listing.html',
 })
 export class ViewListingPage {
+  list: any = [];
   fabs: boolean;
   media: any;
   listing: any;
@@ -41,7 +42,6 @@ export class ViewListingPage {
 
   ionViewWillEnter(){    
     this.id = this.navParams.get('id');
-    this.fabs = this.FabsProvider.isInList(this.id);
     this.ListingProvider.getListings(this.id).subscribe(response =>{
       this.listing = response;
       this.title = this.listing.Listing[0].name;
@@ -61,13 +61,18 @@ export class ViewListingPage {
       this.instagram = this.media.Media[0].instagram;
     });
 
-  //////////////////////just testing getting fabs list////////////////////////
-
     this.FabsProvider.getFabsList()
     .then((list) => {
-      console.log("Get list: ",list);
+      this.list = list;
+      console.log("FABSLIST:", this.list);
+      for(var i = 0; i < this.list.length ; i++){
+        if(this.list[i].id == this.navParams.get('id')){  
+          console.log("FOUND!");
+          this.fabs = true;
+          break;
+        }
+      }
     });
-    /////////////////////////////////////////////////////////////////////////////
   }
 
   openWebBrowser(link){
