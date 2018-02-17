@@ -12,7 +12,7 @@ import { FabsProvider } from '../../providers/fabs/fabs';
 })
 export class ViewListingPage {
   list: any = [];
-  fabs: boolean;
+  fabs: boolean = false;
   media: any;
   listing: any;
   imagePath: string;
@@ -37,10 +37,10 @@ export class ViewListingPage {
     public ModalController: ModalController,
     public FabsProvider: FabsProvider
   ) {
-    this.fabs = false;
   }
 
-  ionViewWillEnter(){    
+  ionViewWillEnter(){  
+    this.fabs = false;  
     this.id = this.navParams.get('id');
     this.ListingProvider.getListings(this.id).subscribe(response =>{
       this.listing = response;
@@ -70,6 +70,8 @@ export class ViewListingPage {
           console.log("FOUND!");
           this.fabs = true;
           break;
+        }else{
+          this.fabs = false;
         }
       }
     });
@@ -105,6 +107,7 @@ export class ViewListingPage {
          this.FabsProvider.addToFabsList(info);
       }else{
         this.FabsProvider.removeFromList(this.id);
+        console.log('removeing: ' , this.id);
       }
   }
 

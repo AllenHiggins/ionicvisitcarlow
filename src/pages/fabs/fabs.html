@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>My Favourites</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <div *ngIf="isEmpty" class="back"></div>
+</ion-content>
+<ion-content padding >
+  <div *ngIf="isEmpty" class="animated flipInY">
+    <h2>Welcome to your Favourites List</h2>
+    <h3>No Listings Found</h3>
+    <p>
+      To add a Listing to your Favourites list select the heart icon
+      <ion-icon class="heart animated infinite pulse" ios="ios-heart" md="md-heart"></ion-icon> on a listings page.
+      Simply tap the heart icon again to remove the listing from your Favourites list.
+    </p>
+  </div>
+  
+  <div *ngIf="!isEmpty">
+    <ion-grid>
+        <ion-row>
+          <ion-col col-sm-12 col-md-3>  
+            <ion-card class="round"
+              *ngFor="let item of list" 
+              (click)="itemTapped($event, item)"
+            >
+              <img src="{{item.imagePath}}" class="cardImg"/>
+              <ion-card-content>
+                <ion-card-title>
+                  <h2>{{item.title}}</h2>
+                </ion-card-title>
+              </ion-card-content>
+            </ion-card> 
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+  </div>
+</ion-content>

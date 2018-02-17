@@ -3,12 +3,12 @@
     <ion-title>{{title}}</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content fullscreen #myContent  class="animated bounceInLeft">
+<ion-content fullscreen #myContent  class="animated slideInRight">
   <div class="par">
     <img src={{imagePath}} class="viewListingImg"/>
   </div>
   <div class='viewListingInfo'>
-    <div class="animated bounceInLeft mediaLinks">
+    <div class="mediaLinks">
       <ul>
         <li>
             <ion-icon ios="ios-map" md="ios-map-outline" (click)="openModal()"></ion-icon>
@@ -48,6 +48,6 @@
       Phone: {{phone}}
     </p>
     <hr />
-    <p class="txt animated fadeInUp">{{text}}</p>  
+    <p class="txt">{{text}}</p>  
   </div>
 </ion-content>

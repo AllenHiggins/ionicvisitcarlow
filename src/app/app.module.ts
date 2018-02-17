@@ -10,6 +10,7 @@ import { SubpagePage } from '../pages/subpage/subpage';
 import { ListingsPage } from '../pages/listings/listings';
 import { EventsPage } from '../pages/events/events';
 import { ViewListingPage } from '../pages/view-listing/view-listing';
+import { FabsPage } from '../pages/fabs/fabs';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -32,7 +33,8 @@ import { FabsProvider } from '../providers/fabs/fabs';
     SubpagePage,
     ListingsPage,
     EventsPage,
-    ViewListingPage
+    ViewListingPage,
+    FabsPage
   ],
   imports: [
     BrowserModule,
@@ -49,7 +51,8 @@ import { FabsProvider } from '../providers/fabs/fabs';
     SubpagePage,
     ListingsPage,
     EventsPage,
-    ViewListingPage
+    ViewListingPage,
+    FabsPage
   ],
   providers: [
     StatusBar,

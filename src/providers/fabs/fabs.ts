@@ -21,7 +21,7 @@ export class FabsProvider {
   removeFromList(listId){
     for(var i = 0; i < this.list.length ; i++){
       if(this.list[i].id == listId){
-         this.list.splice(0,1);    
+         this.list.splice(i,1);    
       }
     }
     this.Storage.set('fabsList', this.list);
