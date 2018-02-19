@@ -7,6 +7,7 @@ import { FabsProvider } from '../../providers/fabs/fabs';
 import { GpsDistanceProvider } from '../../providers/gps-distance/gps-distance';
 import { Geolocation } from '@ionic-native/geolocation';
 import { HttpClient } from '@angular/common/http';
+import { LikesProvider } from '../../providers/likes/likes';
 
 @IonicPage()
 @Component({
@@ -35,7 +36,8 @@ export class ViewListingPage {
   website: string;
   myLat: any;
   myLong: any;
-  v: any;
+  noGPS: boolean = false;
+  like: boolean;
 
   constructor(
     public navCtrl: NavController, 
@@ -47,7 +49,8 @@ export class ViewListingPage {
     public FabsProvider: FabsProvider,
     public gpsDistanceProvider: GpsDistanceProvider,
     public geolocation: Geolocation,
-    public http: HttpClient
+    public http: HttpClient,
+    public likesProvider: LikesProvider
   ) {
   }
 
@@ -66,7 +69,9 @@ export class ViewListingPage {
       this.text = this.listing.Listing[0].text;
       this.geolocation.getCurrentPosition().then((resp) => {
         this.getDistance(resp.coords.latitude,resp.coords.longitude);
+        this.noGPS = false;
       }).catch((error) => {
+        this.noGPS = true;
         console.log('Error getting location', error);
       });
     });
@@ -137,7 +142,7 @@ export class ViewListingPage {
         console.log(err);
       });
     }else{
-      console.log("empty................");
+      console.log("empty..");
     }
 
   }
@@ -184,6 +189,22 @@ export class ViewListingPage {
     }
     const modal = this.ModalController.create("ModalPage",{data: mapData} );
     modal.present();
+  }
+
+  likeListing(){
+    this.like = !this.like;
+    if(this.like){
+      this.likesProvider.addToLikes();
+          //update likes
+          //refetch likes
+     
+    }else{
+      this.likesProvider.unLike();
+        //update likes
+        //refetch likes
+     
+    }
+    
   }
 
 }

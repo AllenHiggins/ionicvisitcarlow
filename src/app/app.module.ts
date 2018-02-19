@@ -27,6 +27,7 @@ import { MedialinksProvider } from '../providers/medialinks/medialinks';
 import { FabsProvider } from '../providers/fabs/fabs';
 import { Geolocation } from '@ionic-native/geolocation';
 import { GpsDistanceProvider } from '../providers/gps-distance/gps-distance';
+import { LikesProvider } from '../providers/likes/likes';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { GpsDistanceProvider } from '../providers/gps-distance/gps-distance';
     LaunchNavigator,
     GoogleMaps,
     Geolocation,
-    GpsDistanceProvider
+    GpsDistanceProvider,
+    LikesProvider
 
   ]
 })

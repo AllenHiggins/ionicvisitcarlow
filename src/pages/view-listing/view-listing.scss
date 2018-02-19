@@ -19,6 +19,13 @@ ion-icon{
     font-size: 25px;
 }
 
+.likeBTN{
+    position: absolute;
+    right: 40px;
+    margin-top:-27px;
+}
+
+.like,
 .heart{
     color: #3b0d44;
     font-size: 27px;
@@ -46,4 +53,8 @@ ion-icon{
         color: rgb(56, 18, 56);
     }
     font-size: 12px;
+}
+.DISLIST ul{
+    left:0px;
+    padding: 0px;
 }

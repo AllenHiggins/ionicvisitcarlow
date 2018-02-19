@@ -42,7 +42,9 @@
     <br />
     <br />
     <hr>
-    <div class="DISLIST">
+    <div *ngIf="noGPS">Turn on GPS for Distance Martix</div>
+    <div *ngIf="!noGPS" class="DISLIST">
+      
         Distance: {{carList.distance}}<br />
       <ul class="animated fadeInRight">
         <li >
@@ -59,7 +61,13 @@
           </li>
       </ul>
       <hr>
-      <h2>{{title}}</h2> 
+      <h2>
+        {{title}}
+        <div class="likeBTN" (click)="likeListing()">
+          <ion-icon *ngIf="!like" class="like" ios="ios-done-all" md="md-done-all"></ion-icon> 
+          <ion-icon class="heart animated rubberBand" *ngIf="like" ios="ios-checkmark-circle" md="md-checkmark-circle"></ion-icon>
+        </div>
+      </h2> 
       <p class="xtra">
         {{address}}
         <br />

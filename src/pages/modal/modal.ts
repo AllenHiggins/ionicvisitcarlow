@@ -1,6 +1,6 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController,NavParams,ViewController } from 'ionic-angular';
-import { LaunchNavigator } from '@ionic-native/launch-navigator';
+import { LaunchNavigator,LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
 
 declare var google: any;
 @IonicPage()
@@ -59,6 +59,7 @@ export class ModalPage {
   }
 
   navme(){
+
     this.launchNavigator.navigate(this.address)
     .then(
       success =>{
