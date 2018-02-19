@@ -5,11 +5,13 @@ page-view-listing {
 .mediaLinks{
     float: right;
     color: #3b0d44;
+    padding: 0px;
+    height: 20px;
 }
 
 .mediaLinks ul li{
     display: inline-block;
-    padding: 10px;
+    padding: 5px;
     margin-top: -20px;
 }
 
@@ -19,7 +21,7 @@ ion-icon{
 
 .heart{
     color: #3b0d44;
-    font-size: 25px;
+    font-size: 27px;
 }
 
 .txt{
@@ -27,5 +29,21 @@ ion-icon{
 }
 
 .xtra{
+    font-size: 12px;
+}
+
+.DISLIST {
+    display: block;
+    margin: auto;
+    width: 90%;
+}
+.DISLIST ul li{
+    display: inline-block;
+    text-align: center;
+    padding-left: 2px;
+    padding-right: 2px;
+    ion-icon{
+        color: rgb(56, 18, 56);
+    }
     font-size: 12px;
 }

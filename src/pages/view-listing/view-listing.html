@@ -41,13 +41,32 @@
     </div>
     <br />
     <br />
-    <h1>{{title}}</h1> 
-    <p class="xtra">
-      {{address}}
-      <br />
-      Phone: {{phone}}
-    </p>
-    <hr />
+    <hr>
+    <div class="DISLIST">
+        Distance: {{carList.distance}}<br />
+      <ul class="animated fadeInRight">
+        <li >
+          <ion-icon class="car" ios="ios-car" md="md-car"></ion-icon> 
+          <br/>{{carList.car}}
+        </li>
+        <li>
+            <ion-icon ios="ios-bicycle" md="md-bicycle"></ion-icon>
+            <br/>{{bicyclingList.bicycling}}
+          </li>
+        <li>
+            <ion-icon ios="ios-walk" md="md-walk"></ion-icon>
+            <br/>{{walkingList.walking}}
+          </li>
+      </ul>
+      <hr>
+      <h2>{{title}}</h2> 
+      <p class="xtra">
+        {{address}}
+        <br />
+        Phone: {{phone}}
+      </p>  
+    </div>
+    <hr>
     <p class="txt">{{text}}</p>  
   </div>
 </ion-content>

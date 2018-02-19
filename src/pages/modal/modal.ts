@@ -1,5 +1,6 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams,ViewController } from 'ionic-angular';
+import { IonicPage, NavController,NavParams,ViewController } from 'ionic-angular';
+import { LaunchNavigator } from '@ionic-native/launch-navigator';
 
 declare var google: any;
 @IonicPage()
@@ -11,12 +12,13 @@ export class ModalPage {
   @ViewChild('map') mapRef: ElementRef;
   lat : any;
   long: any;
+  address: string;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public ViewController: ViewController
-  ) {
+    public ViewController: ViewController,
+    private launchNavigator: LaunchNavigator) {
 
   }
 
@@ -28,6 +30,7 @@ export class ModalPage {
     const data = this.navParams.get("data");
     this.lat = data.lat;
     this.long = data.long;
+    this.address = data.address;
 
     console.log(data, this.lat, this.long);
   }
@@ -54,4 +57,16 @@ export class ModalPage {
       map
     });
   }
+
+  navme(){
+    this.launchNavigator.navigate(this.address)
+    .then(
+      success =>{
+        console.log('Launched navigator');
+      },
+      error => {
+        console.log('Error launching navigator', error);
+      });
+  }
+
 }

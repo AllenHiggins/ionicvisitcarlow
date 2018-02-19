@@ -4,6 +4,9 @@ import { ListingProvider } from '../../providers/listing/listing';
 import { MedialinksProvider } from '../../providers/medialinks/medialinks';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { FabsProvider } from '../../providers/fabs/fabs';
+import { GpsDistanceProvider } from '../../providers/gps-distance/gps-distance';
+import { Geolocation } from '@ionic-native/geolocation';
+import { HttpClient } from '@angular/common/http';
 
 @IonicPage()
 @Component({
@@ -11,6 +14,9 @@ import { FabsProvider } from '../../providers/fabs/fabs';
   templateUrl: 'view-listing.html',
 })
 export class ViewListingPage {
+  carList: any = [];
+  bicyclingList: any = [];
+  walkingList: any = [];
   list: any = [];
   fabs: boolean = false;
   media: any;
@@ -27,6 +33,9 @@ export class ViewListingPage {
   instagram: string;
   twitter: string;
   website: string;
+  myLat: any;
+  myLong: any;
+  v: any;
 
   constructor(
     public navCtrl: NavController, 
@@ -35,9 +44,13 @@ export class ViewListingPage {
     public MedialinksProvider: MedialinksProvider,
     public InAppBrowser: InAppBrowser,
     public ModalController: ModalController,
-    public FabsProvider: FabsProvider
+    public FabsProvider: FabsProvider,
+    public gpsDistanceProvider: GpsDistanceProvider,
+    public geolocation: Geolocation,
+    public http: HttpClient
   ) {
   }
+
 
   ionViewWillEnter(){  
     this.fabs = false;  
@@ -51,6 +64,11 @@ export class ViewListingPage {
       this.long = this.listing.Listing[0].longitude;
       this.phone = this.listing.Listing[0].phone;
       this.text = this.listing.Listing[0].text;
+      this.geolocation.getCurrentPosition().then((resp) => {
+        this.getDistance(resp.coords.latitude,resp.coords.longitude);
+      }).catch((error) => {
+        console.log('Error getting location', error);
+      });
     });
 
     this.MedialinksProvider.getMediaLinks(this.id).subscribe(respone =>{
@@ -75,6 +93,53 @@ export class ViewListingPage {
         }
       }
     });
+  }
+
+  getDistance(lat,long){
+    var car = "https://maps.googleapis.com/maps/api/distancematrix/json?origins="
+    +lat+","
+    +long+"&destinations="+this.long+","
+    +this.lat+"&mode=driving&key=AIzaSyChoxvY816Q0WjlL22RlDrGJ9n-fo4Nh-A";
+
+    var bicycling = "https://maps.googleapis.com/maps/api/distancematrix/json?origins="
+    +lat+","
+    +long+"&destinations="+this.long+","
+    +this.lat+"&mode=bicycling&key=AIzaSyChoxvY816Q0WjlL22RlDrGJ9n-fo4Nh-A";
+
+    var walking = "https://maps.googleapis.com/maps/api/distancematrix/json?origins="
+    +lat+","
+    +long+"&destinations="+this.long+","
+    +this.lat+"&mode=walking&key=AIzaSyChoxvY816Q0WjlL22RlDrGJ9n-fo4Nh-A";
+    
+    console.log(this.lat, " ==== ", this.long);
+
+    if(this.lat != null && this.long != null){
+      this.http.get(car).subscribe((data => {
+        this.carList = {
+          "distance": data["rows"][0].elements[0].distance.text,
+          "car": data["rows"][0].elements[0].duration.text
+        }
+        this.http.get(bicycling).subscribe((data => {
+          this.bicyclingList = {
+            "bicycling": data["rows"][0].elements[0].duration.text
+          }
+          this.http.get(walking).subscribe((data => {
+            this.walkingList = {
+              "walking": data["rows"][0].elements[0].duration.text
+            }
+          }),(err) => {
+            console.log(err);
+          });
+        }),(err) => {
+          console.log(err);
+        });
+      }),(err) => {
+        console.log(err);
+      });
+    }else{
+      console.log("empty................");
+    }
+
   }
 
   openWebBrowser(link){
@@ -114,11 +179,11 @@ export class ViewListingPage {
   openModal(){
     const mapData = {
       lat: this.lat,
-      long: this.long
+      long: this.long,
+      address: this.address
     }
     const modal = this.ModalController.create("ModalPage",{data: mapData} );
     modal.present();
   }
-
 
 }
