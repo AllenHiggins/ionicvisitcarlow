@@ -9,6 +9,6 @@ export class CategoriesProvider {
   }
 
   getCategories = () => {
-    return this.http.get("http://inframe.pythonanywhere.com/category")
+    return this.http.get("http://inframe.pythonanywhere.com/category");
   }
 }

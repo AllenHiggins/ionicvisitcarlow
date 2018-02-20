@@ -14,7 +14,10 @@ export class GpsDistanceProvider {
   getDistance(lat,long){
     let str = "";
     this.geolocation.getCurrentPosition().then((resp) => {
-      str = "https://maps.googleapis.com/maps/api/distancematrix/json?origins="+resp.coords.latitude+","+resp.coords.longitude+"&destinations="+lat+","+long+"&mode=driving&key=AIzaSyChoxvY816Q0WjlL22RlDrGJ9n-fo4Nh-A";
+      str = "https://maps.googleapis.com/maps/api/distancematrix/json?origins="
+      +resp.coords.latitude+","
+      +resp.coords.longitude+"&destinations="+lat+","
+      +long+"&mode=driving&key=AIzaSyChoxvY816Q0WjlL22RlDrGJ9n-fo4Nh-A";
       console.log(str);
     }).catch((error) => {
       console.log('Error getting location', error);

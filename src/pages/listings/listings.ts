@@ -26,7 +26,7 @@ export class ListingsPage {
 
     this.PlacesProvider.getListings(this.title).subscribe(response =>{
       this.list = response;
-      console.log(this.list);
+      console.log("likes: ",this.list);
     });
   }
 

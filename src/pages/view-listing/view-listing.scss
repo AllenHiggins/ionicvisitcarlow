@@ -1,5 +1,9 @@
 page-view-listing {
-
+    h2{
+        span{
+            font-size: 14px;
+        }
+    }
 }
 
 .mediaLinks{
@@ -21,7 +25,7 @@ ion-icon{
 
 .likeBTN{
     position: absolute;
-    right: 40px;
+    right: 30px;
     margin-top:-27px;
 }
 

@@ -38,6 +38,7 @@ export class ViewListingPage {
   myLong: any;
   noGPS: boolean = false;
   like: boolean;
+  numberOfLikes: any;
 
   constructor(
     public navCtrl: NavController, 
@@ -60,6 +61,7 @@ export class ViewListingPage {
     this.id = this.navParams.get('id');
     this.ListingProvider.getListings(this.id).subscribe(response =>{
       this.listing = response;
+      this.numberOfLikes = this.listing.Listing[0].likes;
       this.title = this.listing.Listing[0].name;
       this.imagePath = this.listing.Listing[0].image;
       this.address = this.listing.Listing[0].address;
@@ -90,11 +92,27 @@ export class ViewListingPage {
       console.log("FABSLIST:", this.list);
       for(var i = 0; i < this.list.length ; i++){
         if(this.list[i].id == this.navParams.get('id')){  
-          console.log("FOUND!");
+          console.log("fab FOUND!");
           this.fabs = true;
           break;
         }else{
           this.fabs = false;
+        }
+      }
+    });
+
+    this.likesProvider.getLikeList()
+    .then((list) => {
+      this.list = list;
+      console.log("likeLIST:", this.list);
+      for(var i = 0; i < this.list.length ; i++){
+        if(this.list[i].id == this.navParams.get('id')){  
+          console.log("Like FOUND!");
+          this.like = true;
+          break;
+        }else{
+          this.like = false;
+          console.log("Like NOT FOUND!");
         }
       }
     });
@@ -193,16 +211,21 @@ export class ViewListingPage {
 
   likeListing(){
     this.like = !this.like;
+    const info = {
+        "id": this.id,
+        "title": this.title,
+        "imagePath": this.imagePath
+      }
     if(this.like){
-      this.likesProvider.addToLikes();
-          //update likes
-          //refetch likes
-     
+      this.likesProvider.addToLikes(info).subscribe(response =>{
+       console.log("added: ",response);
+       this.numberOfLikes = response.listingLikes[0].likes;
+      });
     }else{
-      this.likesProvider.unLike();
-        //update likes
-        //refetch likes
-     
+      this.likesProvider.unLike(this.id).subscribe(response =>{
+        console.log("remove: ",response);
+        this.numberOfLikes = response.listingLikes[0].likes;
+      });
     }
     
   }

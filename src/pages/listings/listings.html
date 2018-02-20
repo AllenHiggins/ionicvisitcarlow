@@ -17,6 +17,7 @@
           <ion-card-content>
             <ion-card-title>
               <h2>{{item.name}}</h2>
+              <p *ngIf="item.likes != 0">Likes: {{item.likes}}</p>
             </ion-card-title>
           </ion-card-content>
         </ion-card> 

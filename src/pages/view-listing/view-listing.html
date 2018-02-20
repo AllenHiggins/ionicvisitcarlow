@@ -66,6 +66,7 @@
         <div class="likeBTN" (click)="likeListing()">
           <ion-icon *ngIf="!like" class="like" ios="ios-done-all" md="md-done-all"></ion-icon> 
           <ion-icon class="heart animated rubberBand" *ngIf="like" ios="ios-checkmark-circle" md="md-checkmark-circle"></ion-icon>
+          <span *ngIf="numberOfLikes != 0">{{numberOfLikes}}</span>
         </div>
       </h2> 
       <p class="xtra">
