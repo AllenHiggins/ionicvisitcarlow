@@ -1,25 +1,30 @@
 ion-app._gmaps_cdv_ .nav-decor{
     background-color: transparent !important;
 }
+
 page-map {
+
     ion-title{
         text-align: center;
+        
     }  
-    .goTo{
+
+    .goTo{ 
         position: absolute;
         top:5px;
         right: 1px;
         background-color: rgb(68, 6, 68);
         width: 50px;
         border-radius: 100px;
-
     }
 
-    #map{
-        height: 100%;
-    }
 }
 
+
+
+ion-app.gmaps_cdv .nav-decor {
+    background-color: transparent !important;
+}
 
 
 

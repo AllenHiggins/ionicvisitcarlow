@@ -11,6 +11,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <preference name="orientation" value="portrait" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="android-minSdkVersion" value="16" />
     <preference name="BackupWebStorage" value="none" />
@@ -81,20 +82,20 @@
     <plugin name="cordova-plugin-splashscreen" spec="~4.0.1" />
     <plugin name="cordova-plugin-ionic-webview" spec="^1.1.11" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
-    <engine name="android" spec="^7.0.0" />
     <plugin name="cordova-plugin-inappbrowser" spec="^2.0.2" />
     <allow-navigation href="http://192.168.1.7:8100" />
     <plugin name="cordova-sqlite-storage" spec="^2.2.0" />
     <plugin name="uk.co.workingedge.phonegap.plugin.launchnavigator" spec="^4.1.3" />
     <allow-navigation href="http://192.168.1.7:8101" />
     <plugin name="cordova-plugin-camera" spec="^4.0.2" />
-    <plugin name="cordova-plugin-googlemaps" spec="^2.2.5">
+    <plugin name="cordova-plugin-geolocation" spec="^4.0.1">
+        <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="To locate you" />
+    </plugin>
+    <plugin name="cordova-plugin-googlemaps" spec="https://github.com/mapsplugin/cordova-plugin-googlemaps">
         <variable name="API_KEY_FOR_ANDROID" value="AIzaSyBhRL1lG72xfDDIBCE8-SNQrjfBclLEyQk" />
         <variable name="API_KEY_FOR_IOS" value="AIzaSyBoeSUDLkYKCa3S8-ixf-czzvEDhJmgO2E" />
         <variable name="PLAY_SERVICES_VERSION" value="11.8.0" />
         <variable name="ANDROID_SUPPORT_V4_VERSION" value="24.1.0" />
     </plugin>
-    <plugin name="cordova-plugin-geolocation" spec="^4.0.1">
-        <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="To locate you" />
-    </plugin>
+    <engine name="android" spec="^7.0.0" />
 </widget>

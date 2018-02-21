@@ -1,13 +1,12 @@
 <ion-header>
   <ion-navbar>
       <ion-title>Map</ion-title>
-      <ion-icon class="modalBack" ios="ios-arrow-back" md="md-arrow-back" (click)="closeModal()"></ion-icon>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <div #map id="map"></div> 
+  <div #map id="map_canvas" style="height: 120%">
+    <button class="goTo" ion-button (click)="navme()">GO!</button>
+  </div>
 </ion-content>
-<ion-content>
-  <button class="goTo" ion-button (click)="navme()">GO!</button>
-</ion-content> 
+

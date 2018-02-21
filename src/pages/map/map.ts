@@ -8,9 +8,9 @@ import {
   GoogleMapOptions,
   CameraPosition,
   MarkerOptions,
-  Marker
+  Marker,
+  LatLng,
  } from '@ionic-native/google-maps';
- //declare var google: any;
 
 @IonicPage()
 @Component({
@@ -18,11 +18,13 @@ import {
   templateUrl: 'map.html',
 })
 export class MapPage {
-  @ViewChild('map') mapRef: ElementRef;
+  //@ViewChild('map') mapRef: ElementRef;
   map: GoogleMap;
+  mapElement: HTMLElement;
   lat : any;
   long: any;
   address: string;
+  private location:LatLng;
 
   constructor(
     public navCtrl: NavController, 
@@ -32,13 +34,11 @@ export class MapPage {
     private googleMaps: GoogleMaps,
     private platform: Platform
   ) {
-   // platform.ready().then(() => {
-///this.loadMap();
-   // });
+    this.location = new LatLng(42.346903, -71.135101);
   }
 
   ionViewDidLoad() {
-   
+    
   }
 
   ionViewWillLoad(){
@@ -46,48 +46,60 @@ export class MapPage {
     this.lat = data.lat;
     this.long = data.long;
     this.address = data.address;
-    this.loadMap();
-    console.log(data, this.lat, this.long);
+    this.platform.ready().then(() => {
+      this.loadMap();
+    });
+    console.log(this.address, this.lat, this.long);
   }
 
   closeModal(){
     this.ViewController.dismiss();
   }
 
-  loadMap() {
-    
-    let mapOptions: GoogleMapOptions = {
-      camera: {
-        target: {
-          lat: 43.0741904,
-          lng:  -89.3809802
-        },
-        zoom: 18,
-        tilt: 30
-      }
-    };
+  loadMap(){
+    try{
+      //alert("lat="+this.lat +" long="+ this.long);
+      let mapOption: GoogleMapOptions = {
+        camera: {
+          target: {
+            lat:this.long,
+            lng:this.lat
+          },
+          zoom: 15,
+          tilt: 30
+        }
+      };
 
-    this.map = this.googleMaps.create(this.mapRef.nativeElement, mapOptions);
+      this.map = this.googleMaps.create('map_canvas', mapOption);
 
-    this.map.one(GoogleMapsEvent.MAP_READY)
-      .then(() => {
-        this.map.addMarker({
-            title: 'Ionic',
-            icon: 'blue',
-            animation: 'DROP',
-            position: {
-              lat:  43.0741904,
-              lng:  -89.3809802
-            }
-          })
-          .then(marker => {
-            marker.on(GoogleMapsEvent.MARKER_CLICK)
-              .subscribe(() => {
-                console.log('clicked');
-              });
-          });
+      this.map.one(GoogleMapsEvent.MAP_READY)
+        .then(() => {
+          this.map.addMarker({
+              title: this.address+" ,Ireland",
+              icon: '#69177a',
+              animation: 'DROP',
+              position: {
+                lat:this.long,
+                lng:this.lat
+              }
+            })
+            .then(marker => {
+              marker.on(GoogleMapsEvent.MARKER_CLICK)
+                .subscribe(() => {
+                  console.log('clicked');
+                });
+            }).catch((err) =>{
+              alert("error3: "+ err);
+            });
 
-      });
+        }).catch((err)=> {
+          alert("catch1: "+ err);
+        });
+      
+    }catch(err){
+      alert("Catch2: "+err);
+    }
+
   }
 
   navme(){

@@ -9,6 +9,8 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { HttpClient } from '@angular/common/http';
 import { LikesProvider } from '../../providers/likes/likes';
 
+import { MapPage } from '../map/map';
+
 @IonicPage()
 @Component({
   selector: 'page-view-listing',
@@ -38,6 +40,7 @@ export class ViewListingPage {
   myLong: any;
   noGPS: boolean = false;
   like: boolean;
+  likesRep: any;
   numberOfLikes: any;
 
   constructor(
@@ -199,14 +202,24 @@ export class ViewListingPage {
       }
   }
 
-  openModal(){
+  openModal(event){
     const mapData = {
       lat: this.lat,
       long: this.long,
       address: this.address
     }
-    const modal = this.ModalController.create("ModalPage",{data: mapData} );
+    this.navCtrl.push(MapPage, {
+    //  item: 'Map'
+      data: mapData
+    });
+    /*const mapData = {
+      lat: this.lat,
+      long: this.long,
+      address: this.address
+    }
+    const modal = this.ModalController.create("MapPage",{data: mapData} );
     modal.present();
+    */
   }
 
   likeListing(){
@@ -219,12 +232,14 @@ export class ViewListingPage {
     if(this.like){
       this.likesProvider.addToLikes(info).subscribe(response =>{
        console.log("added: ",response);
-       this.numberOfLikes = response.listingLikes[0].likes;
+       this.likesRep = response;
+       this.numberOfLikes = this.likesRep.listingLikes[0].likes;
       });
     }else{
       this.likesProvider.unLike(this.id).subscribe(response =>{
         console.log("remove: ",response);
-        this.numberOfLikes = response.listingLikes[0].likes;
+        this.likesRep = response;
+        this.numberOfLikes = this.likesRep.listingLikes[0].likes;
       });
     }
     

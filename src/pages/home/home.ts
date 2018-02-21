@@ -10,8 +10,9 @@ import { EventsPage } from '../events/events';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  list:any;
+  list:any = [];
   sublist: any;
+  empty: boolean = true;
 
   constructor(
     public navCtrl: NavController,
@@ -20,9 +21,27 @@ export class HomePage {
 
   }
 
+  ionViewDidEnter(){
+    if(this.list == ''){
+      this.empty = true;
+    }else{
+      this.empty = false;
+    }
+    this.loadData();
+  }
+
   ionViewWillEnter(){
-    this.CategoriesProvider.getCategories().subscribe(response =>{
-      this.list = response;
+   this.loadData();
+  }
+
+  loadData(){
+    this.CategoriesProvider.getCategories().subscribe(
+      (response) => {
+        this.list = response; 
+        this.empty = false;
+      },(err) => {
+        this.empty = true;
+        console.log("error");
     });
   }
 

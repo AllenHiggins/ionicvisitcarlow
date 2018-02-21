@@ -63,17 +63,17 @@
       <hr>
       <h2>
         {{title}}
-        <div class="likeBTN" (click)="likeListing()">
-          <ion-icon *ngIf="!like" class="like" ios="ios-done-all" md="md-done-all"></ion-icon> 
-          <ion-icon class="heart animated rubberBand" *ngIf="like" ios="ios-checkmark-circle" md="md-checkmark-circle"></ion-icon>
-          <span *ngIf="numberOfLikes != 0">{{numberOfLikes}}</span>
-        </div>
       </h2> 
       <p class="xtra">
         {{address}}
         <br />
         Phone: {{phone}}
       </p>  
+      <div class="likeBTN" (click)="likeListing()">
+        <ion-icon *ngIf="!like" class="like" ios="ios-done-all" md="md-done-all"></ion-icon> 
+        <ion-icon class="heart animated rubberBand" *ngIf="like" ios="ios-checkmark-circle" md="md-checkmark-circle"></ion-icon>
+        <span *ngIf="numberOfLikes != 0">{{numberOfLikes}}</span>
+      </div>
     </div>
     <hr>
     <p class="txt">{{text}}</p>  

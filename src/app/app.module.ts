@@ -29,6 +29,9 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { GpsDistanceProvider } from '../providers/gps-distance/gps-distance';
 import { LikesProvider } from '../providers/likes/likes';
 
+import { ComponentsModule } from '../components/components.module';
+import { MapPage } from '../pages/map/map';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -37,7 +40,8 @@ import { LikesProvider } from '../providers/likes/likes';
     ListingsPage,
     EventsPage,
     ViewListingPage,
-    FabsPage
+    FabsPage,
+    MapPage
   ],
   imports: [
     BrowserModule,
@@ -46,6 +50,7 @@ import { LikesProvider } from '../providers/likes/likes';
     HttpClientModule,
     ParallaxModule,
     ElasticHeaderModule,
+    ComponentsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -55,7 +60,8 @@ import { LikesProvider } from '../providers/likes/likes';
     ListingsPage,
     EventsPage,
     ViewListingPage,
-    FabsPage
+    FabsPage,
+    MapPage
   ],
   providers: [
     StatusBar,
