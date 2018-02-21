@@ -34,11 +34,13 @@ export class MapPage {
     private googleMaps: GoogleMaps,
     private platform: Platform
   ) {
-    this.location = new LatLng(42.346903, -71.135101);
+  
   }
 
   ionViewDidLoad() {
-    
+    this.platform.ready().then(() => {
+      this.loadMap();
+    });
   }
 
   ionViewWillLoad(){
@@ -64,6 +66,8 @@ export class MapPage {
           target: {
             lat:this.long,
             lng:this.lat
+            //lat: 43.0741904,
+            //lng: -89.3809802
           },
           zoom: 15,
           tilt: 30
@@ -81,6 +85,8 @@ export class MapPage {
               position: {
                 lat:this.long,
                 lng:this.lat
+               // lat: 43.0741904,
+               // lng: -89.3809802
               }
             })
             .then(marker => {
