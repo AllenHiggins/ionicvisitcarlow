@@ -12,11 +12,9 @@
   </div>-->
   <ion-grid >
     <ion-row>
-      <ion-col col-sm-12 col-md-3>  
-        <ion-card class="round"
-          *ngFor="let item of list.Catagories" 
-          (click)="itemTapped($event, item)"
-        >
+      <ion-col col-12 col-md-4 *ngFor="let item of list.Catagories" 
+          (click)="itemTapped($event, item)">  
+        <ion-card class="round">
           <img src="{{item.image}}" class="cardImg"/>
           <ion-card-content>
             <ion-card-title>

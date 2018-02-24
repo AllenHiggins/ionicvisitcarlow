@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { HomePage } from '../pages/home/home';
 import { SubpagePage } from '../pages/subpage/subpage';
@@ -14,6 +15,10 @@ import { FabsPage } from '../pages/fabs/fabs';
 })
 export class MyApp {
   list: any;
+  facebook: string = "https://m.facebook.com/VisitCarlow";
+  instagram: string = "https://www.instagram.com/visitcarlow";
+  twitter: string = "https://mobile.twitter.com/VisitCarlow";
+  website: string ="http://www.visitcarlow.ie";
 
   @ViewChild(Nav) nav: Nav;
 
@@ -24,7 +29,8 @@ export class MyApp {
   constructor(
     public platform: Platform, 
     public statusBar: StatusBar, 
-    public splashScreen: SplashScreen) {
+    public splashScreen: SplashScreen,
+    public InAppBrowser: InAppBrowser) {
     this.initializeApp();
     
     const path = 'assets/imgs/';
@@ -89,5 +95,24 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
+  }
+
+  openWebBrowser(link){
+    let url = '';
+    switch(link){
+      case 'website':
+        url = this.website;
+      break;
+      case 'faceBook':
+        url = this.facebook;
+      break;
+      case 'twitter':
+        url = this.twitter
+      break;
+      case 'instagram':
+        url = this.instagram;
+      break;
+    }
+    const browser = this.InAppBrowser.create(url,'_system');
   }
 }

@@ -11,11 +11,15 @@ page-map {
 
     .goTo{ 
         position: absolute;
-        top:5px;
-        right: 1px;
-        background-color: rgb(68, 6, 68);
-        width: 50px;
-        border-radius: 100px;
+        bottom:10px;
+        right: 10px;
+        width: 30px;
+        height: 30px;
+       
+        ion-icon{
+            text-align: center;
+        }
+        
     }
 
 }

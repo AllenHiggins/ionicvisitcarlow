@@ -17,6 +17,33 @@
             <div class='listTextIcon'>{{item.title}}</div>
           </div>
         </div>
+        <div class="vcMedia">
+          <p>Vist Carlow Media</p><br />
+          <ul >
+            <li>
+              <div (click)="openWebBrowser('website')"> 
+                <ion-icon ios="ios-globe" md="md-globe"></ion-icon>
+              </div>
+            </li>
+            <li>
+              <div (click)="openWebBrowser('faceBook')">
+                <ion-icon name="logo-facebook"></ion-icon>
+              </div>
+            </li>  
+            <li>
+              <div (click)="openWebBrowser('twitter')">
+                <ion-icon name="logo-twitter"></ion-icon>
+              </div>
+            </li>
+            <li>
+              <div (click)="openWebBrowser('instagram')"><ion-icon name="logo-instagram"></ion-icon></div>
+            </li>
+          </ul>
+          <div class="ancientEast">
+            <p>In assocation with</p>
+              <img src='assets/imgs/IrelandsAncientEast-REG_Logo-Tagline_Col.png'>
+          </div>
+        </div>
       </div>
     </ion-list>
   </ion-content>

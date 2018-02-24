@@ -6,10 +6,10 @@
 <ion-content padding *ngIf="list" class="animated slideInUp">
   <ion-grid>
     <ion-row>
-      <ion-col col-12>
+      <ion-col col-12 col-md-4 *ngFor="let item of list.Subcategories" 
+          (click)="itemTapped($event, item)">
         <ion-card class="round"
-          *ngFor="let item of list.Subcategories" 
-          (click)="itemTapped($event, item)"
+          
         >
           <img src="{{item.image}}" class="cardImg"/>
           <ion-card-content>

@@ -3,6 +3,46 @@
     font-family:Palatino, Verdana, sans-serif;
 }
 
+.vcMedia{
+    padding-top: 20px;
+    background-color: rgb(236, 236, 236);
+    
+    p{
+        display: block;
+        margin: auto;
+        width: 150px;
+        text-align: center;
+        color: rgb(77, 77, 77); 
+        font-size: 12px;
+    }
+
+    ul{
+        width: 70%;
+        display: block;
+        margin: auto;
+        li{
+            display: inline-block;
+            padding-right: 10px;
+            color: rgb(61, 13, 61);
+        }
+    }
+    .ancientEast{
+        
+        padding-top: 20px;
+        display: block;
+        margin: auto;
+        width: 150px;
+        img{
+            width: 150px;
+        }
+    }
+   
+}
+
+ion-label{
+    overflow: visible;
+}
+
 .headerTitle{
     text-shadow: 1px 2px 1px black;
 }
@@ -21,8 +61,8 @@
 }
 
 .iconList{
-    width: 30px;
-    height: 30px;
+    width: 26px;
+    height: 26px;
     position: absolute;
     margin-top:-5px
 }
@@ -52,13 +92,7 @@ ion-card-title{
 
 .round{
     border-radius: 5px;
-    flex-wrap: nowrap;
-}
-
-.viewListingImg{
-    min-width: 100%;
-    max-height: 220px;
-    box-shadow: 1px 2px 1px grey;
+    //flex-wrap: nowrap;
 }
 
 .viewListingInfo{

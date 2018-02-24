@@ -42,6 +42,7 @@ export class ViewListingPage {
   like: boolean;
   likesRep: any;
   numberOfLikes: any;
+  phoneNumberLink: string = 'tel:';
 
   constructor(
     public navCtrl: NavController, 
@@ -71,6 +72,7 @@ export class ViewListingPage {
       this.lat = this.listing.Listing[0].latitude;
       this.long = this.listing.Listing[0].longitude;
       this.phone = this.listing.Listing[0].phone;
+      this.phoneNumberLink = this.phoneNumberLink+this.phone;
       this.text = this.listing.Listing[0].text;
       this.geolocation.getCurrentPosition().then((resp) => {
         this.getDistance(resp.coords.latitude,resp.coords.longitude);

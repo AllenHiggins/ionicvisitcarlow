@@ -18,7 +18,7 @@ import {
   templateUrl: 'map.html',
 })
 export class MapPage {
-  //@ViewChild('map') mapRef: ElementRef;
+
   map: GoogleMap;
   mapElement: HTMLElement;
   lat : any;
@@ -59,17 +59,16 @@ export class MapPage {
   }
 
   loadMap(){
+
     try{
-      //alert("lat="+this.lat +" long="+ this.long);
+      
       let mapOption: GoogleMapOptions = {
         camera: {
           target: {
             lat:this.long,
             lng:this.lat
-            //lat: 43.0741904,
-            //lng: -89.3809802
           },
-          zoom: 15,
+          zoom: 18,
           tilt: 30
         }
       };
@@ -85,8 +84,6 @@ export class MapPage {
               position: {
                 lat:this.long,
                 lng:this.lat
-               // lat: 43.0741904,
-               // lng: -89.3809802
               }
             })
             .then(marker => {
@@ -95,15 +92,15 @@ export class MapPage {
                   console.log('clicked');
                 });
             }).catch((err) =>{
-              alert("error3: "+ err);
+              //alert("error3: "+ err);
             });
 
         }).catch((err)=> {
-          alert("catch1: "+ err);
+          //alert("catch1: "+ err);
         });
       
     }catch(err){
-      alert("Catch2: "+err);
+      //alert("Catch2: "+err);
     }
 
   }
