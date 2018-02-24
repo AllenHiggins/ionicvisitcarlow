@@ -33,6 +33,7 @@ import { ComponentsModule } from '../components/components.module';
 import { MapPage } from '../pages/map/map';
 import { PopularPage } from '../pages/popular/popular';
 import { MostPopularProvider } from '../providers/most-popular/most-popular';
+import { HeaderColor } from '@ionic-native/header-color';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { MostPopularProvider } from '../providers/most-popular/most-popular';
     PopularPage
   ],
   providers: [
+    HeaderColor,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},

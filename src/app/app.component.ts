@@ -3,6 +3,7 @@ import { Nav, Platform} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { HeaderColor } from '@ionic-native/header-color';
 
 import { HomePage } from '../pages/home/home';
 import { SubpagePage } from '../pages/subpage/subpage';
@@ -31,7 +32,8 @@ export class MyApp {
     public platform: Platform, 
     public statusBar: StatusBar, 
     public splashScreen: SplashScreen,
-    public InAppBrowser: InAppBrowser) {
+    public InAppBrowser: InAppBrowser,
+    private headerColor: HeaderColor) {
     this.initializeApp();
     
     const path = 'assets/imgs/';
@@ -90,7 +92,16 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       //this.statusBar.styleDefault();
+      
+      // let status bar overlay webview
+      this.statusBar.overlaysWebView(false);
+
+      // set status bar to purple
+      this.statusBar.backgroundColorByHexString('#280321');
       this.statusBar.styleBlackTranslucent();
+
+      this.headerColor.tint('#280321');
+
       this.splashScreen.hide();
     });
    
