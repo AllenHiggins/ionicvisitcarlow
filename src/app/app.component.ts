@@ -9,6 +9,7 @@ import { SubpagePage } from '../pages/subpage/subpage';
 import { ListingsPage } from '../pages/listings/listings';
 import { EventsPage } from '../pages/events/events';
 import { FabsPage } from '../pages/fabs/fabs';
+import { PopularPage } from '../pages/popular/popular';
 
 @Component({
   templateUrl: 'app.html'
@@ -46,7 +47,8 @@ export class MyApp {
       {title:'Useful Contacts',icon:path+"contacts.png"},
       {title:'Medical',icon:path+"medical.png"},
       {title:'Entertainment',icon:path+"enter.png"},
-      {title:'My Favourites',icon:path+"fabs.png"}
+      {title:'My Favourites',icon:path+"fabs.png"},
+      {title:'Popular', icon:path+"checkicon.png"}
     ]
 
     // used for an example of ngFor and navigation
@@ -70,6 +72,10 @@ export class MyApp {
     });
     }else if(title === 'My Favourites'){
       this.nav.push(FabsPage, {
+        item: title
+    });
+    }else if(title === 'Popular'){
+      this.nav.push(PopularPage, {
         item: title
     });
     }else{

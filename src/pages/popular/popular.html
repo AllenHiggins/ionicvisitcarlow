@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Popular</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding *ngIf="list" class="animated slideInUp">  
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12 col-md-4 *ngFor="let item of list.popular"
+            (click)="itemTapped($event, item)">  
+          <ion-card class="round">
+            <img src="{{item.imagePath}}" class="cardImg"/>
+            <ion-card-content>
+              <ion-card-title>
+                <h2>{{item.title}}</h2>
+                <p>Likes: {{item.likes}}</p>
+              </ion-card-title>
+            </ion-card-content>
+          </ion-card> 
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>

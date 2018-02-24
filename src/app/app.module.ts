@@ -31,6 +31,8 @@ import { LikesProvider } from '../providers/likes/likes';
 
 import { ComponentsModule } from '../components/components.module';
 import { MapPage } from '../pages/map/map';
+import { PopularPage } from '../pages/popular/popular';
+import { MostPopularProvider } from '../providers/most-popular/most-popular';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import { MapPage } from '../pages/map/map';
     EventsPage,
     ViewListingPage,
     FabsPage,
-    MapPage
+    MapPage,
+    PopularPage
   ],
   imports: [
     BrowserModule,
@@ -61,7 +64,8 @@ import { MapPage } from '../pages/map/map';
     EventsPage,
     ViewListingPage,
     FabsPage,
-    MapPage
+    MapPage,
+    PopularPage
   ],
   providers: [
     StatusBar,
@@ -80,7 +84,8 @@ import { MapPage } from '../pages/map/map';
     GoogleMaps,
     Geolocation,
     GpsDistanceProvider,
-    LikesProvider
+    LikesProvider,
+    MostPopularProvider
 
   ]
 })

@@ -27,6 +27,7 @@ export class ViewListingPage {
   imagePath: string;
   id: any;
   title: string;
+  email: string;
   address: string;
   lat: string;
   long: string;
@@ -43,6 +44,7 @@ export class ViewListingPage {
   likesRep: any;
   numberOfLikes: any;
   phoneNumberLink: string = 'tel:';
+  emailLink: string = 'mailto:';
 
   constructor(
     public navCtrl: NavController, 
@@ -65,6 +67,7 @@ export class ViewListingPage {
     this.id = this.navParams.get('id');
     this.ListingProvider.getListings(this.id).subscribe(response =>{
       this.listing = response;
+      console.log(this.listing);
       this.numberOfLikes = this.listing.Listing[0].likes;
       this.title = this.listing.Listing[0].name;
       this.imagePath = this.listing.Listing[0].image;
@@ -73,6 +76,8 @@ export class ViewListingPage {
       this.long = this.listing.Listing[0].longitude;
       this.phone = this.listing.Listing[0].phone;
       this.phoneNumberLink = this.phoneNumberLink+this.phone;
+      this.email = this.listing.Listing[0].email;
+      this.emailLink = this.emailLink+this.email;
       this.text = this.listing.Listing[0].text;
       this.geolocation.getCurrentPosition().then((resp) => {
         this.getDistance(resp.coords.latitude,resp.coords.longitude);

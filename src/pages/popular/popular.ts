@@ -1,31 +1,32 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { PlacesProvider } from '../../providers/places/places';
 import { ViewListingPage } from '../../pages/view-listing/view-listing';
+import { MostPopularProvider } from '../../providers/most-popular/most-popular';
 
 @IonicPage()
 @Component({
-  selector: 'page-listings',
-  templateUrl: 'listings.html',
+  selector: 'page-popular',
+  templateUrl: 'popular.html',
 })
-export class ListingsPage {
-
+export class PopularPage {
   list: any;
   title: string;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public PlacesProvider: PlacesProvider) {
+    public mostPopularProvider: MostPopularProvider
+  ) {
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad PopularPage');
   }
 
   ionViewWillEnter() {
-    this.title = this.navParams.get('item');
-    console.log('ionViewDidLoad ListingsPage', this.title);
-
-    this.PlacesProvider.getListings(this.title).subscribe(response =>{
+    this.mostPopularProvider.getMostPopular().subscribe(response =>{
       this.list = response;
-      console.log("likes: ",this.list);
+      console.log("popular: ",this.list);
     });
   }
 

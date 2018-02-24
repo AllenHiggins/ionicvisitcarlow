@@ -44,7 +44,6 @@
     <hr>
     <div *ngIf="noGPS">Turn on GPS for Distance Martix</div>
     <div *ngIf="!noGPS" class="DISLIST">
-      
         Distance: {{carList.distance}}<br />
       <ul class="animated fadeInRight">
         <li >
@@ -72,11 +71,14 @@
       <p class="xtra">
         {{address}}
         <br />
-        Phone: <a href={{phoneNumberLink}} class="button button-positve">{{phone}}</a>
+        <span *ngIf="phone != '' ">
+          Phone: <a href={{phoneNumberLink}} class="button button-positve">{{phone}}</a>
+        </span>
         <br />
-        Email: <a href="mailto:c00197373@itcarlow.ie" class="button button-positve">c00197373@itcarlow.ie</a>
+        <span *ngIf="email != '' ">
+          Email: <a href="{{emailLink}}" class="button button-positve">{{email}}</a>
+        </span>
       </p>  
-     
     </div>
     <hr>
     <div style=" white-space: pre-wrap;" class="txtBody">{{text}}</div>  
