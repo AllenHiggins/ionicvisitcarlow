@@ -57,7 +57,6 @@ export class MyApp {
   }
 
   itemTapped(event,title) {
-
     //let title = event.target.textContent;
     console.log("----",title);
 

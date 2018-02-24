@@ -12,10 +12,10 @@
             <span class='listTextIcon'>{{p.title}}</span>
         </button>
         <div menuClose ion-item *ngFor="let item of list">
-          <div (click)="itemTapped($event,item.title)" class="animated fadeInLeft">
-            <img src='{{item.icon}}' class='iconList'/>
-            <div class='listTextIcon'>{{item.title}}</div>
-          </div>
+            <div (click)="itemTapped($event,item.title)" class="animated fadeInLeft btnNav">
+              <img src='{{item.icon}}' class='iconList'/>
+              <div class='listTextIcon'>{{item.title}}</div>
+            </div>
         </div>
         <div class="vcMedia">
           <p>Vist Carlow Media</p><br />

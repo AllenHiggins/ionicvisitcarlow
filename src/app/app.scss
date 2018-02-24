@@ -3,6 +3,23 @@
     font-family:Palatino, Verdana, sans-serif;
 }
 
+@keyframes example {
+    from {opacity: 1;}
+    to {opacity: .4;}
+
+    from {opacity: .4;}
+    to {opacity: 1;}
+}
+
+.input-wrapper:active,
+ion-icon:active,
+ion-card:active,
+a:active{
+    animation-name: example;
+    animation-duration: 7s;
+}
+
+
 .vcMedia{
     padding-top: 20px;
     background-color: rgb(236, 236, 236);
