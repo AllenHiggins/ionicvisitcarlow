@@ -89,8 +89,8 @@ export class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
+      // platform is ready and our plugins are available.
+    
       //this.statusBar.styleDefault();
       
       // let status bar overlay webview

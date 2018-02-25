@@ -11,6 +11,18 @@
     to {opacity: 1;}
 }
 
+ion-refresher{     
+    padding-top:25px;
+    img{
+        margin-top: 10px;
+        width: 35px;
+        display: block;
+        margin: auto;
+        border-radius: 100px;
+       
+    }
+}
+
 .input-wrapper:active,
 ion-icon:active,
 ion-card:active,
@@ -124,4 +136,18 @@ ion-card-title{
 
 .viewListHeader{
     background-color: blanchedalmond;
+}
+
+ion-card{
+    
+    .cardImgList{
+        width: 100px;
+        height: 80px;
+    }
+    span{
+        margin-left: 35%;
+        margin-top:-50px;
+        position: absolute;
+        font-size: 16px;
+    }
 }

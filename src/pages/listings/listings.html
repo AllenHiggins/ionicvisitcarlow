@@ -3,9 +3,10 @@
     <ion-title>{{title}}</ion-title>
   </ion-navbar>
 </ion-header>
-<br />
-<br />
-<ion-content padding *ngIf="list" class="animated slideInUp">  
+
+<ion-content padding *ngIf="list" class="animated slideInUp"> 
+    <br />
+    <br />
   <ion-grid>
     <ion-row>
       <ion-col col-12 col-md-4 *ngFor="let item of list.cards"

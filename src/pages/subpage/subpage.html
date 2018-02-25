@@ -4,13 +4,13 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding *ngIf="list" class="animated slideInUp">
+    <br />
+    <br />
   <ion-grid>
     <ion-row>
       <ion-col col-12 col-md-4 *ngFor="let item of list.Subcategories" 
           (click)="itemTapped($event, item)">
-        <ion-card class="round"
-          
-        >
+        <ion-card class="round">
           <img src="{{item.image}}" class="cardImg"/>
           <ion-card-content>
             <ion-card-title>

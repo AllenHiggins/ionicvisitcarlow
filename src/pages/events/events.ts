@@ -18,4 +18,13 @@ export class EventsPage {
     this.title = this.navParams.get('item');
   }
 
+  doRefresh(refresher) {
+    //this.loadData();
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 5000);
+  }
+
 }

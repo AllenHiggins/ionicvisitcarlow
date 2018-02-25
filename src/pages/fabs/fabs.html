@@ -6,8 +6,8 @@
 <ion-content>
   <div *ngIf="isEmpty" class="back"></div>
 </ion-content>
-<ion-content padding >
-  <div *ngIf="isEmpty" class="animated flipInY">
+<ion-content>
+  <div *ngIf="isEmpty" class="animated bounceInLeft">
     <h2>Welcome to your Favourites List</h2>
     <h3>No Listings Found</h3>
     <p>
@@ -20,17 +20,11 @@
   <div *ngIf="!isEmpty">
     <ion-grid>
         <ion-row>
-          <ion-col col-sm-12 col-md-3>  
-            <ion-card class="round animated flipInY"
-              *ngFor="let item of list" 
-              (click)="itemTapped($event, item)"
-            >
-              <img src="{{item.imagePath}}" class="cardImg"/>
-              <ion-card-content>
-                <ion-card-title>
-                  <h2>{{item.title}}</h2>
-                </ion-card-title>
-              </ion-card-content>
+          <ion-col col-12 col-md-6 *ngFor="let item of list" 
+              (click)="itemTapped($event, item)">  
+              <ion-card class="listCard round animated bounceInLeft">
+              <img src="{{item.imagePath}}" class="cardImgList"/>
+              <span>{{item.title}}</span>
             </ion-card> 
           </ion-col>
         </ion-row>
