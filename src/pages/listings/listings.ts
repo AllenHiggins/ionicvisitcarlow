@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { PlacesProvider } from '../../providers/places/places';
 import { ViewListingPage } from '../../pages/view-listing/view-listing';
+import { NetworkProvider } from '../../providers/network/network';
+import { SearchPage } from '../search/search';
+
 
 @IonicPage()
 @Component({
@@ -16,7 +19,9 @@ export class ListingsPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public PlacesProvider: PlacesProvider) {
+    public PlacesProvider: PlacesProvider,
+    public networkProvider: NetworkProvider
+  ) {
   }
 
   ionViewWillEnter() {
@@ -34,6 +39,10 @@ export class ListingsPage {
     this.navCtrl.push(ViewListingPage, {
         id: item.id
     });
+  }
+
+  goToSearchPage(){
+    this.navCtrl.push(SearchPage);
   }
 
 }

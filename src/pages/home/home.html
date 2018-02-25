@@ -3,14 +3,14 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button> 
-    <ion-title>Home</ion-title>
+    <ion-title>Home<ion-icon class="searchIcon" (click)="goToSearchPage()" ios="ios-search" md="md-search"></ion-icon></ion-title>
   </ion-navbar>
 </ion-header> 
 
 <ion-content padding *ngIf="list" class="animated slideInUp"> 
  <br />
  <br />
-  <ion-grid >
+  <ion-grid>
     <ion-row>
       <ion-col col-12 col-md-4 *ngFor="let item of list.Catagories" 
           (click)="itemTapped($event, item)">  

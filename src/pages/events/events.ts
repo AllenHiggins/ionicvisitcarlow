@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NetworkProvider } from '../../providers/network/network';
+import { SearchPage } from '../search/search';
 
 @IonicPage()
 @Component({
@@ -10,7 +12,11 @@ export class EventsPage {
 
   title: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public networkProvider: NetworkProvider
+  ) {
   }
 
   ionViewDidLoad() {
@@ -18,13 +24,8 @@ export class EventsPage {
     this.title = this.navParams.get('item');
   }
 
-  doRefresh(refresher) {
-    //this.loadData();
-
-    setTimeout(() => {
-      console.log('Async operation has ended');
-      refresher.complete();
-    }, 5000);
+  goToSearchPage(){
+    this.navCtrl.push(SearchPage);
   }
 
 }

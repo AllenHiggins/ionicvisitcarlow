@@ -34,6 +34,10 @@ import { MapPage } from '../pages/map/map';
 import { PopularPage } from '../pages/popular/popular';
 import { MostPopularProvider } from '../providers/most-popular/most-popular';
 import { HeaderColor } from '@ionic-native/header-color';
+import { Network } from '@ionic-native/network';
+import { NetworkProvider } from '../providers/network/network';
+import { SearchProvider } from '../providers/search/search';
+import { SearchPage } from '../pages/search/search';
 
 @NgModule({
   declarations: [
@@ -45,7 +49,8 @@ import { HeaderColor } from '@ionic-native/header-color';
     ViewListingPage,
     FabsPage,
     MapPage,
-    PopularPage
+    PopularPage,
+    SearchPage
   ],
   imports: [
     BrowserModule,
@@ -66,9 +71,11 @@ import { HeaderColor } from '@ionic-native/header-color';
     ViewListingPage,
     FabsPage,
     MapPage,
-    PopularPage
+    PopularPage,
+    SearchPage
   ],
   providers: [
+    Network,
     HeaderColor,
     StatusBar,
     SplashScreen,
@@ -87,7 +94,9 @@ import { HeaderColor } from '@ionic-native/header-color';
     Geolocation,
     GpsDistanceProvider,
     LikesProvider,
-    MostPopularProvider
+    MostPopularProvider,
+    NetworkProvider,
+    SearchProvider
 
   ]
 })

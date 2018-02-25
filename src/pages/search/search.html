@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Search</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-searchbar (ionInput)="filterData($event)">
+  </ion-searchbar>
+  <div *ngIf="!isEmpty">
+    <ion-grid>
+        <ion-row>
+          <div class="noResults" *ngIf="searchList == ''">No Results Found</div>
+          <ion-col col-12 col-md-6 *ngFor="let item of searchList" 
+              (click)="itemTapped($event, item)">  
+              <ion-card class="listCard round animated bounceInUp">
+              <img src="{{item.imagePath}}" class="cardImgList"/>
+              <span>
+                {{item.title}}
+                <p *ngIf="item.likes > 0">Likes {{item.likes}}</p>
+              </span>
+            </ion-card> 
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+  </div>
+</ion-content>

@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams,ViewController, Platform } from 'ionic-angular';
 import { LaunchNavigator } from '@ionic-native/launch-navigator';
+import { NetworkProvider } from '../../providers/network/network';
 import {
   GoogleMaps,
   GoogleMap,
@@ -11,6 +12,7 @@ import {
   Marker,
   LatLng,
  } from '@ionic-native/google-maps';
+ import { SearchPage } from '../search/search';
 
 @IonicPage()
 @Component({
@@ -32,7 +34,8 @@ export class MapPage {
     public ViewController: ViewController,
     private launchNavigator: LaunchNavigator,
     private googleMaps: GoogleMaps,
-    private platform: Platform
+    private platform: Platform,
+    public networkProvider: NetworkProvider
   ) {
   
   }
@@ -114,6 +117,10 @@ export class MapPage {
       error => {
         console.log('Error launching navigator', error);
       });
+  }
+
+  goToSearchPage(){
+    this.navCtrl.push(SearchPage);
   }
 
 }

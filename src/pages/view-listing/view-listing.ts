@@ -8,8 +8,9 @@ import { GpsDistanceProvider } from '../../providers/gps-distance/gps-distance';
 import { Geolocation } from '@ionic-native/geolocation';
 import { HttpClient } from '@angular/common/http';
 import { LikesProvider } from '../../providers/likes/likes';
-
+import { NetworkProvider } from '../../providers/network/network';
 import { MapPage } from '../map/map';
+import { SearchPage } from '../search/search';
 
 @IonicPage()
 @Component({
@@ -57,7 +58,8 @@ export class ViewListingPage {
     public gpsDistanceProvider: GpsDistanceProvider,
     public geolocation: Geolocation,
     public http: HttpClient,
-    public likesProvider: LikesProvider
+    public likesProvider: LikesProvider,
+    public networkProvider: NetworkProvider
   ) {
   }
 
@@ -250,6 +252,10 @@ export class ViewListingPage {
       });
     }
     
+  }
+
+  goToSearchPage(){
+    this.navCtrl.push(SearchPage);
   }
 
 }

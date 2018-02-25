@@ -148,6 +148,17 @@ ion-card{
         margin-left: 35%;
         margin-top:-50px;
         position: absolute;
-        font-size: 16px;
+        font-size: 14px;
     }
+}
+
+.searchIcon{
+    float:right;
+}
+
+.noResults{
+    color: rgb(187, 185, 185);
+    padding-top:20px;
+    display: block;
+    margin:auto;
 }

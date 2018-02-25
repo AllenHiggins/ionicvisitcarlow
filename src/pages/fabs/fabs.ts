@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FabsProvider } from '../../providers/fabs/fabs';
 import { ViewListingPage } from '../../pages/view-listing/view-listing';
+import { NetworkProvider } from '../../providers/network/network';
+import { SearchPage } from '../search/search';
 
 @IonicPage()
 @Component({
@@ -15,7 +17,8 @@ export class FabsPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public fabsProvider: FabsProvider
+    public fabsProvider: FabsProvider,
+    public networkProvider: NetworkProvider
   ) {
   }
 
@@ -33,7 +36,7 @@ export class FabsPage {
     });
   }
 
-  ionViewWillLoad(){
+  ionViewWillEnter(){
     this.fabsProvider.getFabsList()
     .then((list) => {
       this.list = list;
@@ -49,5 +52,9 @@ export class FabsPage {
     this.navCtrl.push(ViewListingPage, {
         id: item.id
     });
+  }
+
+  goToSearchPage(){
+    this.navCtrl.push(SearchPage);
   }
 }

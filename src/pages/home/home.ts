@@ -4,6 +4,9 @@ import { CategoriesProvider } from '../../providers/categories/categories';
 import { SubpagePage } from '../subpage/subpage';
 import { ListingsPage } from '../listings/listings';
 import { EventsPage } from '../events/events';
+import { SearchPage } from '../search/search';
+
+import { NetworkProvider } from '../../providers/network/network';
 
 @Component({
   selector: 'page-home',
@@ -13,16 +16,28 @@ export class HomePage {
   list:any = [];
   sublist: any;
   empty: boolean = true;
+  offLine: boolean = false;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public CategoriesProvider: CategoriesProvider){
-
+    public CategoriesProvider: CategoriesProvider,
+    public networkProvider: NetworkProvider
+  ){
+    this.offLine = this.networkProvider.con;
+    console.log(this.offLine);
   }
 
+
   ionViewDidEnter(){
-    if(this.list == ''){
+  
+    /*if(){
+        this.offLine = false; 
+    }else{
+        this.offLine = true;
+    }*/
+
+    if(this.list ){
       this.empty = true;
     }else{
       this.empty = false;
@@ -31,7 +46,7 @@ export class HomePage {
   }
 
   ionViewWillEnter(){
-   this.loadData();
+    this.loadData();
   }
 
   loadData(){
@@ -43,6 +58,10 @@ export class HomePage {
         this.empty = true;
         console.log("error");
     });
+  }
+
+  goToSearchPage(){
+    this.navCtrl.push(SearchPage);
   }
 
   itemTapped(event, item) {

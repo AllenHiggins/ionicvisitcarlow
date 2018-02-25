@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ViewListingPage } from '../../pages/view-listing/view-listing';
 import { MostPopularProvider } from '../../providers/most-popular/most-popular';
+import { NetworkProvider } from '../../providers/network/network';
+import { SearchPage } from '../search/search';
 
 @IonicPage()
 @Component({
@@ -15,7 +17,8 @@ export class PopularPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public mostPopularProvider: MostPopularProvider
+    public mostPopularProvider: MostPopularProvider,
+    public networkProvider: NetworkProvider
   ) {
   }
 
@@ -35,6 +38,10 @@ export class PopularPage {
     this.navCtrl.push(ViewListingPage, {
         id: item.id
     });
+  }
+
+  goToSearchPage(){
+    this.navCtrl.push(SearchPage);
   }
 
 }
