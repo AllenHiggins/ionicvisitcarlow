@@ -3,7 +3,10 @@
     <ion-title>Search</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content padding>
+<ion-content >
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <img src="assets/imgs/spinner3.gif" class="cardImg"/>
+  </ion-refresher>
   <ion-searchbar (ionInput)="filterData($event)">
   </ion-searchbar>
   <div *ngIf="!isEmpty">
@@ -16,7 +19,7 @@
               <img src="{{item.imagePath}}" class="cardImgList"/>
               <span>
                 {{item.title}}
-                <p *ngIf="item.likes > 0">Likes {{item.likes}}</p>
+                <p class="searchLikes" *ngIf="item.likes > 0">Likes {{item.likes}}</p>
               </span>
             </ion-card> 
           </ion-col>

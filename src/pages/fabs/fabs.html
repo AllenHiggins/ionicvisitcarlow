@@ -4,9 +4,9 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <div *ngIf="isEmpty" class="back"></div>
-</ion-content>
-<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <img src="assets/imgs/spinner3.gif" class="cardImg"/>
+  </ion-refresher>
   <div *ngIf="isEmpty" class="animated bounceInLeft">
     <h2>Welcome to your Favourites List</h2>
     <h3>No Listings Found</h3>

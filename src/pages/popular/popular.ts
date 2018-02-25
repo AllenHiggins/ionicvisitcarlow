@@ -27,6 +27,10 @@ export class PopularPage {
   }
 
   ionViewWillEnter() {
+    this.loadData();
+  }
+
+  loadData(){
     this.mostPopularProvider.getMostPopular().subscribe(response =>{
       this.list = response;
       console.log("popular: ",this.list);
@@ -42,6 +46,11 @@ export class PopularPage {
 
   goToSearchPage(){
     this.navCtrl.push(SearchPage);
+  }
+
+  doRefresh(refresher) {
+    this.loadData();
+    refresher.complete();
   }
 
 }

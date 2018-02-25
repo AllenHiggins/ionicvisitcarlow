@@ -6,5 +6,10 @@
 <ion-content padding>
     <br />
     <br />
-
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+      <img src="assets/imgs/spinner3.gif" class="cardImg"/>
+   </ion-refresher>
+    <ion-spinner>
+      <img src="assets/imgs/spinner3.gif" class="cardImg"/>
+    </ion-spinner>
 </ion-content>

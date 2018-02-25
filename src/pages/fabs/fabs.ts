@@ -23,17 +23,7 @@ export class FabsPage {
   }
 
   ionViewCanEnter() {
-    console.log('ionViewDidLoad FabsPage');
-    this.fabsProvider.getFabsList()
-    .then((list) => {
-      this.list = list;
-      if(this.list.length > 0){
-        this.isEmpty = false;
-      }else{
-        this.isEmpty = true;
-      }
-      console.log("f: ", this.list,"isEmpty: ", this.isEmpty);
-    });
+    this.loadData();
   }
 
   ionViewWillEnter(){
@@ -47,6 +37,18 @@ export class FabsPage {
     });
   }
 
+  loadData(){
+    this.fabsProvider.getFabsList()
+    .then((list) => {
+      this.list = list;
+      if(this.list.length > 0){
+        this.isEmpty = false;
+      }else{
+        this.isEmpty = true;
+      }
+    });
+  }
+
   itemTapped(event, item) {
     console.log("item---> ",item.title);
     this.navCtrl.push(ViewListingPage, {
@@ -56,5 +58,10 @@ export class FabsPage {
 
   goToSearchPage(){
     this.navCtrl.push(SearchPage);
+  }
+
+  doRefresh(refresher) {
+    this.loadData();
+    refresher.complete();
   }
 }

@@ -63,8 +63,11 @@ export class ViewListingPage {
   ) {
   }
 
-
   ionViewWillEnter(){  
+    this.loadData();
+  }
+
+  loadData(){
     this.fabs = false;  
     this.id = this.navParams.get('id');
     this.ListingProvider.getListings(this.id).subscribe(response =>{
@@ -256,6 +259,11 @@ export class ViewListingPage {
 
   goToSearchPage(){
     this.navCtrl.push(SearchPage);
+  }
+
+  doRefresh(refresher) {
+    this.loadData();
+    refresher.complete();
   }
 
 }

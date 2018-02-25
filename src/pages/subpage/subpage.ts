@@ -21,6 +21,10 @@ export class SubpagePage {
   }
 
   ionViewWillEnter() {
+    this.loadData();
+  }
+
+  loadData(){
     this.title = this.navParams.get('item');
     console.log('ionViewDidLoad SubpagePage:',this.title);
 
@@ -38,6 +42,11 @@ export class SubpagePage {
 
   goToSearchPage(){
     this.navCtrl.push(SearchPage);
+  }
+
+  doRefresh(refresher) {
+    this.loadData();
+    refresher.complete();
   }
 
 }

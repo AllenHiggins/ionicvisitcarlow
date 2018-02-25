@@ -5,21 +5,22 @@
 
 @keyframes example {
     from {opacity: 1;}
-    to {opacity: .2;}
+    to {opacity: .7;}
 
-    from {opacity: .2;}
+    from {opacity: .7;}
     to {opacity: 1;}
 }
 
 ion-refresher{     
-    padding-top:25px;
+    z-index: 1000;    
     img{
         margin-top: 10px;
-        width: 35px;
+        width: 50px;
+        height: 50px;
         display: block;
         margin: auto;
         border-radius: 100px;
-       
+    
     }
 }
 
@@ -28,7 +29,7 @@ ion-icon:active,
 ion-card:active,
 a:active{
     animation-name: example;
-    animation-duration: 7s;
+    animation-duration: 2s;
     animation-timing-function: ease-in-out;
 }
 
@@ -59,11 +60,13 @@ a:active{
     .ancientEast{
         
         padding-top: 20px;
+        
         display: block;
         margin: auto;
         width: 150px;
         img{
             width: 150px;
+            padding-bottom: 20px;
         }
     }
    
@@ -145,10 +148,13 @@ ion-card{
         height: 80px;
     }
     span{
-        margin-left: 35%;
-        margin-top:-50px;
+        margin-left: 120px;
+        margin-top:-60px;
         position: absolute;
         font-size: 14px;
+    }
+    .searchLikes{
+        font-size: 12px;
     }
 }
 

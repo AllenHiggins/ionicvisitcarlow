@@ -122,5 +122,5 @@ export class MapPage {
   goToSearchPage(){
     this.navCtrl.push(SearchPage);
   }
-
+  
 }

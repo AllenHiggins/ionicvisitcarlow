@@ -25,6 +25,11 @@ export class ListingsPage {
   }
 
   ionViewWillEnter() {
+    this.loadData();
+  }
+
+
+  loadData(){
     this.title = this.navParams.get('item');
     console.log('ionViewDidLoad ListingsPage', this.title);
 
@@ -43,6 +48,11 @@ export class ListingsPage {
 
   goToSearchPage(){
     this.navCtrl.push(SearchPage);
+  }
+
+  doRefresh(refresher) {
+    this.loadData();
+    refresher.complete();
   }
 
 }

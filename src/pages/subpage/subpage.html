@@ -6,6 +6,9 @@
 <ion-content padding *ngIf="list" class="animated slideInUp">
     <br />
     <br />
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <img src="assets/imgs/spinner3.gif" class="cardImg"/>
+  </ion-refresher>
   <ion-grid>
     <ion-row>
       <ion-col col-12 col-md-4 *ngFor="let item of list.Subcategories" 

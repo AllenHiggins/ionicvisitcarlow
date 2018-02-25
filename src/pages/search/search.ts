@@ -28,7 +28,11 @@ export class SearchPage {
   }
 
   ionViewWillEnter(){
-   this.searchProvider.getList().subscribe(
+    this.loadData();
+  }
+
+  loadData(){
+    this.searchProvider.getList().subscribe(
       (response) => {
         this.list = response; 
         this.isEmpty = false;
@@ -37,7 +41,6 @@ export class SearchPage {
         console.log("error");
     });
   }
-
 
   filterData(event){
     let searchValue = event.target.value;
@@ -57,6 +60,11 @@ export class SearchPage {
     this.navCtrl.push(ViewListingPage, {
         id: item.id
     });
+  }
+
+  doRefresh(refresher) {
+    this.loadData();
+    refresher.complete();
   }
 
 }
