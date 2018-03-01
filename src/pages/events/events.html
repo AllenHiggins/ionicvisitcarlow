@@ -3,13 +3,26 @@
     <ion-title>{{title}}<ion-icon class="searchIcon" (click)="goToSearchPage()" ios="ios-search" md="md-search"></ion-icon></ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content padding>
-    <br />
-    <br />
-    <ion-refresher (ionRefresh)="doRefresh($event)">
-      <img src="assets/imgs/spinner3.gif" class="cardImg"/>
-   </ion-refresher>
-    <ion-spinner>
-      <img src="assets/imgs/spinner3.gif" class="cardImg"/>
-    </ion-spinner>
+<br />
+<br />
+<ion-content *ngIf="list" class="animated slideInUp">  
+<ion-refresher (ionRefresh)="doRefresh($event)">
+  <ion-spinner name='dots' class="cardImg"></ion-spinner>
+</ion-refresher>
+<ion-grid>
+  <ion-row>
+    <ion-col col-12 col-md-4 *ngFor="let item of list.result"
+        (click)="itemTapped($event, item)">  
+      <ion-card class="round">
+        <img src="{{item.image}}" class="cardImg"/>
+        <ion-card-content>
+          <ion-card-title>
+            <h2>{{item.title}}</h2>
+            <p>{{item.date | date: 'longDate'}}</p>
+          </ion-card-title>
+        </ion-card-content>
+      </ion-card> 
+    </ion-col>
+  </ion-row>
+</ion-grid>
 </ion-content>

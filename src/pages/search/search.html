@@ -5,14 +5,19 @@
 </ion-header>
 <ion-content >
   <ion-refresher (ionRefresh)="doRefresh($event)">
-    <img src="assets/imgs/spinner3.gif" class="cardImg"/>
+    <ion-spinner name='dots' class="cardImg"></ion-spinner>
   </ion-refresher>
   <ion-searchbar (ionInput)="filterData($event)">
   </ion-searchbar>
   <div *ngIf="!isEmpty">
     <ion-grid>
         <ion-row>
-          <div class="noResults" *ngIf="searchList == ''">No Results Found</div>
+          <div class="noResults" *ngIf="searchList == ''">
+            <p>Can't Find what you're looking for?</p>
+            <p class="tryVCWeb" (click)='openLink()'>
+              Try www.visitcarlow.ie
+            </p>
+          </div>
           <ion-col col-12 col-md-6 *ngFor="let item of searchList" 
               (click)="itemTapped($event, item)">  
               <ion-card class="listCard round animated bounceInUp">

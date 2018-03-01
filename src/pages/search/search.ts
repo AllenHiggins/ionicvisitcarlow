@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { NetworkProvider } from '../../providers/network/network';
 import { SearchProvider } from '../../providers/search/search';
-
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { ViewListingPage } from '../../pages/view-listing/view-listing';
 
 @IonicPage()
@@ -19,6 +19,7 @@ export class SearchPage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     public networkProvider: NetworkProvider,
+    public InAppBrowser: InAppBrowser,
     public searchProvider: SearchProvider
   ) {
   }
@@ -65,6 +66,11 @@ export class SearchPage {
   doRefresh(refresher) {
     this.loadData();
     refresher.complete();
+  }
+
+  openLink(){
+    const url = 'https://www.visitcarlow.ie/'
+    const browser = this.InAppBrowser.create(url,'_system');
   }
 
 }

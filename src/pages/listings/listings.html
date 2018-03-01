@@ -4,11 +4,11 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding *ngIf="list" class="animated slideInUp"> 
+<ion-content *ngIf="list" class="animated slideInUp"> 
     <br />
     <br />
   <ion-refresher (ionRefresh)="doRefresh($event)">
-    <img src="assets/imgs/spinner3.gif" class="cardImg"/>
+    <ion-spinner name='dots' class="cardImg"></ion-spinner>
   </ion-refresher>
   <ion-grid>
     <ion-row>

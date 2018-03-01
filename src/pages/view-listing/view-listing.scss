@@ -72,12 +72,13 @@ ion-icon{
 }
 
 .xtra{
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .DISLIST {
     display: block;
     margin: auto;
+    font-size: 12px;
     //width: 90%;
 }
 .DISLIST ul li{
@@ -93,4 +94,13 @@ ion-icon{
 .DISLIST ul{
     left:0px;
     padding: 0px;
+}
+
+.booking{
+    padding-top: 5px;
+    padding-bottom: 10px;
+    button{
+        background-color: rgb(46, 9, 46);
+    }
+   
 }

@@ -38,6 +38,7 @@ import { Network } from '@ionic-native/network';
 import { NetworkProvider } from '../providers/network/network';
 import { SearchProvider } from '../providers/search/search';
 import { SearchPage } from '../pages/search/search';
+import { EventInfoPage } from '../pages/event-info/event-info';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { SearchPage } from '../pages/search/search';
     FabsPage,
     MapPage,
     PopularPage,
-    SearchPage
+    SearchPage,
+    EventInfoPage
   ],
   imports: [
     BrowserModule,
@@ -72,7 +74,8 @@ import { SearchPage } from '../pages/search/search';
     FabsPage,
     MapPage,
     PopularPage,
-    SearchPage
+    SearchPage,
+    EventInfoPage
   ],
   providers: [
     Network,

@@ -4,6 +4,7 @@ import { FabsProvider } from '../../providers/fabs/fabs';
 import { ViewListingPage } from '../../pages/view-listing/view-listing';
 import { NetworkProvider } from '../../providers/network/network';
 import { SearchPage } from '../search/search';
+import { EventInfoPage } from '../../pages/event-info/event-info';
 
 @IonicPage()
 @Component({
@@ -51,9 +52,17 @@ export class FabsPage {
 
   itemTapped(event, item) {
     console.log("item---> ",item.title);
-    this.navCtrl.push(ViewListingPage, {
+    console.log("item event---> ",item.event);
+    if(item.page){
+      this.navCtrl.push(EventInfoPage, {
         id: item.id
-    });
+      });
+    }else{
+      this.navCtrl.push(ViewListingPage, {
+        id: item.id
+      });
+    }
+    
   }
 
   goToSearchPage(){

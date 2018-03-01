@@ -71,7 +71,8 @@ export class MapPage {
             lat:this.long,
             lng:this.lat
           },
-          zoom: 18,
+          // 0 = the world, 5 = landmass, 10 = city, 15 = streets, 20 = buildings
+          zoom: 10,
           tilt: 30
         }
       };

@@ -20,6 +20,9 @@ $refresher-icon-color:red;
 $refresher-border-color:white;
 $toolbar-md-background: color($colors,purplue);
 //$toolbar-ios-background:  color($colors,purplue);
+$spinner-md-dots-color: color($colors,purplue);
+$spinner-ios-dots-color:color($colors,purplue);
+
 
 @import "ionic.theme.default";
 @import "ionic.ionicons";
