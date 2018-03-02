@@ -51,7 +51,7 @@ export class SubpagePage {
       || title === 'Post Office'
     ){
       this.navCtrl.push(ContactsPage, {
-          item: title
+          id: item.id
       });
     }else{
       this.navCtrl.push(ListingsPage, {

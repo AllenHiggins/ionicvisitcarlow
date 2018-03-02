@@ -7,8 +7,6 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { MapPage } from '../map/map';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { HttpClient } from '@angular/common/http';
-
-import { ListingProvider } from '../../providers/listing/listing';
 import { ContactsProvider } from '../../providers/contacts/contacts';
 
 @IonicPage()
@@ -25,17 +23,18 @@ export class ContactsPage {
   bicyclingList: any = [];
   walkingList: any = [];
   list: any = [];
-  imagePath: string;
   id: any;
   title: string;
-  email: string;
   phone: string;
-  text: any;
   phoneNumberLink: string = 'tel:';
-  emailLink: string = 'mailto:';
-  myLat: any;
-  myLong: any;
+// emailLink: string = 'mailto:';
+// email: string;
   badRequest: string;
+  avatar: string;
+  type: string;
+  passedItem: any;
+  name: string;
+  address: string;
 
   constructor(
     public navCtrl: NavController, 
@@ -45,7 +44,6 @@ export class ContactsPage {
     public gpsDistanceProvider: GpsDistanceProvider,
     public geolocation: Geolocation,
     public http: HttpClient,
-    public ListingProvider: ListingProvider,
     public contactsProvider: ContactsProvider
   ) {
   }
@@ -59,83 +57,55 @@ export class ContactsPage {
   }
 
   loadData(){
-    this.title = this.navParams.get('item');
-
-////////////////////////////////////////////////////////////////////////
-    // chioce is undefined - use contacts provider pass in title
-    // create API end point
-
-    this.ListingProvider.getListings(this.id).subscribe(response =>{
+    let id = this.navParams.get('id');
+    console.log(id);
+    //this.passedItem = this.navParams.get('item');
+    //this.title = this.passedItem.title;
+    this.contactsProvider.getCardData(id).subscribe(response =>{
       this.list = response;
       console.log(this.list);
-      this.title = this.list.Listing[0].name;
-      this.imagePath = this.list.Listing[0].image;
-      //this.address = this.list.Listing[0].address;
-      this.lat = this.list.Listing[0].latitude;
-      this.long = this.list.Listing[0].longitude;
-      this.phone = this.list.Listing[0].phone;
-      this.phoneNumberLink = this.phoneNumberLink+this.phone;
-      this.email = this.list.Listing[0].email;
-      this.emailLink = this.emailLink+this.email;
-      this.text = this.list.Listing[0].text;
-      this.badRequest = this.list.Listing[0].error;
-////////////////////////////////////////////////////////////////////////////////////
-
-      this.geolocation.getCurrentPosition().then((resp) => {
-        this.getDistance(resp.coords.latitude,resp.coords.longitude);
-        this.noGPS = false;
-      }).catch((error) => {
-        this.noGPS = true;
-        console.log('Error getting location', error);
-      });
+      this.setAvatar(id);
     });
-
   }
 
-  getDistance(lat,long){
-    var car = "https://maps.googleapis.com/maps/api/distancematrix/json?origins="
-    +lat+","
-    +long+"&destinations="+this.long+","
-    +this.lat+"&mode=driving&key=AIzaSyChoxvY816Q0WjlL22RlDrGJ9n-fo4Nh-A";
-
-    var bicycling = "https://maps.googleapis.com/maps/api/distancematrix/json?origins="
-    +lat+","
-    +long+"&destinations="+this.long+","
-    +this.lat+"&mode=bicycling&key=AIzaSyChoxvY816Q0WjlL22RlDrGJ9n-fo4Nh-A";
-
-    var walking = "https://maps.googleapis.com/maps/api/distancematrix/json?origins="
-    +lat+","
-    +long+"&destinations="+this.long+","
-    +this.lat+"&mode=walking&key=AIzaSyChoxvY816Q0WjlL22RlDrGJ9n-fo4Nh-A";
-    
-    console.log(this.lat, " ==== ", this.long);
-
-    if(this.lat != null && this.long != null){
-      this.http.get(car).subscribe((data => {
-        this.carList = {
-          "distance": data["rows"][0].elements[0].distance.text,
-          "car": data["rows"][0].elements[0].duration.text
-        }
-        this.http.get(bicycling).subscribe((data => {
-          this.bicyclingList = {
-            "bicycling": data["rows"][0].elements[0].duration.text
-          }
-          this.http.get(walking).subscribe((data => {
-            this.walkingList = {
-              "walking": data["rows"][0].elements[0].duration.text
-            }
-          }),(err) => {
-            console.log(err);
-          });
-        }),(err) => {
-          console.log(err);
-        });
-      }),(err) => {
-        console.log(err);
-      });
-    }else{
-      console.log("empty..");
+  setAvatar(title){
+    console.log(title);
+    switch(title){
+      case 43:
+        this.avatar = 'assets/imgs/policeAv.png';
+      break;
+      case 44:
+        this.avatar = 'assets/imgs/bankingAv.png';
+      break;
+      case 38:
+        this.avatar = 'assets/imgs/outOfHoursAv.png';
+      break;
+      case 40:
+        this.avatar = 'assets/imgs/hospitalAv.png'; 
+      break;
+      case 42:
+        this.avatar = 'assets/imgs/dentalAv.png';
+      break;  
+      case 45:
+        this.avatar = 'assets/imgs/postOfficeAv.png'; 
+      break;
+      case 39:
+        this.avatar = 'assets/imgs/GPAv.png'; 
+      break;
+      default:
+        this.avatar = 'assets/imgs/defaultAv.png';
     }
+  }
+
+  openModal(lat,long,address){
+    const mapData = {
+      lat:lat,
+      long:long,
+      address:address
+    }
+    this.navCtrl.push(MapPage, {
+      data: mapData
+    });
   }
 
   goToSearchPage(){

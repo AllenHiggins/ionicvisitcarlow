@@ -21,7 +21,7 @@
           <ion-col col-12 col-md-6 *ngFor="let item of searchList" 
               (click)="itemTapped($event, item)">  
               <ion-card class="listCard round animated bounceInUp">
-              <img src="{{item.imagePath}}" class="cardImgList"/>
+              <img src="{{item.image}}" class="cardImgList"/>
               <span>
                 {{item.title}}
                 <p class="searchLikes" *ngIf="item.likes > 0">Likes {{item.likes}}</p>
