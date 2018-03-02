@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{title}}<ion-icon class="searchIcon" (click)="goToSearchPage()" ios="ios-search" md="md-search"></ion-icon></ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="animated slideInUp"> 
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+      <ion-spinner name='dots' class="cardImg"></ion-spinner>
+    </ion-refresher>
+    <h1>Contacts Page</h1>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12 col-md-4 *ngFor="let item of list.popular">  
+          <ion-card class="round">
+            <img src="{{item.imagePath}}" class="cardImg"/>
+            <ion-card-content>
+              <ion-card-title>
+                <h2>{{item.title}}</h2>
+                <p></p>
+                <hr>
+                <div *ngIf="noGPS">Turn on GPS for Distance Martix</div>
+                <div *ngIf="!noGPS" class="DISLIST">
+                    Distance: {{carList.distance}}<br />
+                  <ul class="animated fadeInRight">
+                    <li >
+                      <ion-icon class="car" ios="ios-car" md="md-car"></ion-icon> 
+                      <br/>{{carList.car}}
+                    </li>
+                    <li>
+                        <ion-icon ios="ios-bicycle" md="md-bicycle"></ion-icon>
+                        <br/>{{bicyclingList.bicycling}}
+                      </li>
+                    <li>
+                        <ion-icon ios="ios-walk" md="md-walk"></ion-icon>
+                        <br/>{{walkingList.walking}}
+                      </li>
+                  </ul>
+                  <hr>
+                  <span *ngIf="phone != '' ">
+                    Phone: <a href={{phoneNumberLink}} class="button button-positve">{{phone}}</a>
+                  </span>
+                  <br />
+                  <span *ngIf="email != '' ">
+                    Email: <a href="{{emailLink}}" class="button button-positve">{{email}}</a>
+                  </span>
+                </div>
+              </ion-card-title>
+            </ion-card-content>
+          </ion-card> 
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>

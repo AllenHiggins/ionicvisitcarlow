@@ -41,9 +41,12 @@ export class ListingsPage {
 
   itemTapped(event, item) {
     console.log(item.id);
+
     this.navCtrl.push(ViewListingPage, {
         id: item.id
     });
+
+    
   }
 
   goToSearchPage(){

@@ -1,0 +1,40 @@
+page-contacts {
+    .back{
+        width: 100%;
+        height: 100%;
+        opacity: .1;
+        position: absolute;
+        background-repeat: no-repeat;
+    }
+   
+    h3,h2{
+        text-align: center;
+    }
+    
+    p,h3{
+        color: rgb(94, 94, 94);
+    }
+
+    .DISLIST {
+        display: block;
+        margin: auto;
+        font-size: 12px;
+        //width: 90%;
+    }
+    .DISLIST ul li{
+        display: inline-block;
+        text-align: center;
+        padding-left: 2px;
+        padding-right: 2px;
+        ion-icon{
+            color: rgb(56, 18, 56);
+        }
+        font-size: 12px;
+    }
+    
+    .DISLIST ul{
+        left:0px;
+        padding: 0px;
+    }
+    
+}

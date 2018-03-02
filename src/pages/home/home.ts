@@ -5,7 +5,6 @@ import { SubpagePage } from '../subpage/subpage';
 import { ListingsPage } from '../listings/listings';
 import { EventsPage } from '../events/events';
 import { SearchPage } from '../search/search';
-
 import { NetworkProvider } from '../../providers/network/network';
 
 @Component({
@@ -67,15 +66,15 @@ export class HomePage {
   itemTapped(event, item) {
 
     let title = item.title;
-
+    console.log(title);
     if(title === 'Places'){
       this.navCtrl.push(ListingsPage, {
           item: title
       });
     }else if(title === 'Events'){
-      this.navCtrl.push(EventsPage, {
-        item: title
-    });
+        this.navCtrl.push(EventsPage, {
+            item: title
+        });
     }else{
         this.navCtrl.push(SubpagePage, {
             item: title

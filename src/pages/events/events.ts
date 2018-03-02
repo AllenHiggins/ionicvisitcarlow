@@ -14,6 +14,7 @@ export class EventsPage {
 
   list: any;
   title: string;
+  date: any;
 
   constructor(
     public navCtrl: NavController, 

@@ -21,7 +21,7 @@
         </li>
       </ul>
     </div>
-    <div class="title">
+    <div class="eventTitle">
         {{title}} 
       </div> 
       <p class="xtra">
@@ -30,7 +30,7 @@
         {{eventDate | date: 'fullDate'}}
         <br />
        <!--  {{start | date: 'shortTime'}} to {{end | date: 'shortTime'}}-->
-       {{start }} - {{ end }}
+       From {{start }} to {{ end }}
       </p>
     <div *ngIf="noGPS">Turn on GPS for Distance Martix</div>
     <div *ngIf="!noGPS" class="DISLIST">

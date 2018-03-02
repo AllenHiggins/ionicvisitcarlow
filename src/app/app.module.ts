@@ -39,6 +39,8 @@ import { NetworkProvider } from '../providers/network/network';
 import { SearchProvider } from '../providers/search/search';
 import { SearchPage } from '../pages/search/search';
 import { EventInfoPage } from '../pages/event-info/event-info';
+import { ContactsPage } from '../pages/contacts/contacts';
+import { ContactsProvider } from '../providers/contacts/contacts';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,8 @@ import { EventInfoPage } from '../pages/event-info/event-info';
     MapPage,
     PopularPage,
     SearchPage,
-    EventInfoPage
+    EventInfoPage,
+    ContactsPage
   ],
   imports: [
     BrowserModule,
@@ -75,7 +78,8 @@ import { EventInfoPage } from '../pages/event-info/event-info';
     MapPage,
     PopularPage,
     SearchPage,
-    EventInfoPage
+    EventInfoPage,
+    ContactsPage
   ],
   providers: [
     Network,
@@ -99,7 +103,8 @@ import { EventInfoPage } from '../pages/event-info/event-info';
     LikesProvider,
     MostPopularProvider,
     NetworkProvider,
-    SearchProvider
+    SearchProvider,
+    ContactsProvider
 
   ]
 })

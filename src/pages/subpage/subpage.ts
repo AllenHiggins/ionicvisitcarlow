@@ -5,6 +5,8 @@ import { SubCategoriesProvider } from '../../providers/sub-categories/sub-catego
 import { NetworkProvider } from '../../providers/network/network';
 import { SearchPage } from '../search/search';
 
+import { ContactsPage } from '../contacts/contacts';
+
 @Component({
   selector: 'page-subpage',
   templateUrl: 'subpage.html',
@@ -35,9 +37,27 @@ export class SubpagePage {
   }
 
   itemTapped(event, item) {
-    this.navCtrl.push(ListingsPage, {
-        item: item.title
-    });
+
+    console.log(item.title);
+    let title = item.title;
+
+    if(
+      title === 'Out-of-hours GP' 
+      || title === 'GP'
+      || title === 'Hospital'
+      || title === 'Dental'
+      || title === 'Gardai (Police)'
+      || title === 'Banking'
+      || title === 'Post Office'
+    ){
+      this.navCtrl.push(ContactsPage, {
+          item: title
+      });
+    }else{
+      this.navCtrl.push(ListingsPage, {
+          item: item.title
+      });
+    }
   }
 
   goToSearchPage(){
