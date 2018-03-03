@@ -12,6 +12,8 @@ import { EventsPage } from '../pages/events/events';
 import { FabsPage } from '../pages/fabs/fabs';
 import { PopularPage } from '../pages/popular/popular';
 
+import { timer } from 'rxjs/observable/timer';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -23,6 +25,8 @@ export class MyApp {
   website: string ="http://www.visitcarlow.ie";
 
   @ViewChild(Nav) nav: Nav;
+
+  showSplash = true;
 
   rootPage: any = HomePage;
 
@@ -103,6 +107,9 @@ export class MyApp {
       this.headerColor.tint('#280321');
 
       this.splashScreen.hide();
+
+      timer(3000).subscribe(() => this.showSplash = false);
+
     });
    
   }
