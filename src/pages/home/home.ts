@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component,ViewChild } from '@angular/core';
+import { NavController, NavParams,Slides } from 'ionic-angular';
 import { CategoriesProvider } from '../../providers/categories/categories';
 import { SubpagePage } from '../subpage/subpage';
 import { ListingsPage } from '../listings/listings';
@@ -12,10 +12,13 @@ import { NetworkProvider } from '../../providers/network/network';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  @ViewChild(Slides) slides: Slides;
   list:any = [];
   sublist: any;
   empty: boolean = true;
   offLine: boolean = false;
+  skip: boolean = false;
+  skipBtn: string = "Skip";
 
   constructor(
     public navCtrl: NavController,
@@ -86,6 +89,16 @@ export class HomePage {
   doRefresh(refresher) {
     this.loadData();
     refresher.complete();
+  }
+
+  skipInfo(){
+    this.skip = true;
+  }
+
+  slideChanged(){
+    if(this.slides.isEnd()){
+      this.skipBtn = "Continue";
+    }
   }
 
 }

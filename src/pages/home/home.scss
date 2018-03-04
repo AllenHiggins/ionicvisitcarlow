@@ -1,14 +1,90 @@
 page-home {  
+    
+    .slideXtra{
+        top: 150px;
+        position: absolute;
+        color: white;  
+        margin: auto; 
+        width: 100%;
         
+        .h2Xtra{
+            display: block;
+            margin: auto;
+            text-align: center;
+        }
+    }
+
     div.spin{
         position: absolute;
         z-index: 100;
         display: block;
         margin-left: 40%;
     }
-    div.spin svg{
-      
+
+    .sliderBottom{
+        position: absolute;
+        z-index: 999;
+        bottom: 100px;
+        width: 100%;
+        .infoSkip{
+            color: rgb(243, 243, 243);
+            display: block;
+            margin: auto;
+            text-align: center;
+            font-size: 14px;
+        }
+    }
+    
+    .backDropSlider{
+        bottom: 42px;
+        display: block;
+        margin-left: 5%;
+        width: 90%;
+        height: 30px;
+        background-color: white;
+        position: absolute;
+        opacity: 0.2;
+        border-radius: 100px;
+    }
+
+    ion-slides{
+        background-color: hsl(319, 45%, 16%);;
+        ion-slide{
+            h3{
+                color: white;
+            }
+            p{
+                color: rgb(247, 244, 244);
+                font-size: 14px;
+            }
+
+            ul {
+                margin: 0px;
+                padding: 0px;
+                li{
+                    display: inline-block;
+                    color: white;
+                    padding: 5px;
+                    ion-icon{
+                        font-size: 30px;
+                        text-shadow: 1px 2px 1px rgb(0, 0, 0);
+                    }
+                }
+            }
+        }
+    }
+    
+    ion-icon.infoIcon{
+        font-size: 40px;
+        color: white;
+        text-shadow: 1px 2px 1px rgb(0, 0, 0);
     }
   
-   
+    .swiper-pagination-bullet-active{
+        background-color: white;
+    }
+
+    .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-container-horizontal > .swiper-pagination-bullets{
+        bottom: 50px;
+    }
 } 
