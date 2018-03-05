@@ -1,11 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform,MenuController} from 'ionic-angular';
+import { Nav,Platform,MenuController} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { HeaderColor } from '@ionic-native/header-color';
 
 import { HomePage } from '../pages/home/home';
+import { OnboardingPage } from '../pages/onboarding/onboarding';
 import { SubpagePage } from '../pages/subpage/subpage';
 import { ListingsPage } from '../pages/listings/listings';
 import { EventsPage } from '../pages/events/events';
@@ -96,8 +97,7 @@ export class MyApp {
   }
 
   initializeApp() {
-    this.menuController.swipeEnable( false );
-    //$ionicSideMenuDelegate.canDragContent(false);
+   
     this.platform.ready().then(() => {
       
       // platform is ready and our plugins are available.
@@ -111,11 +111,13 @@ export class MyApp {
       this.statusBar.backgroundColorByHexString('#280321');
       this.statusBar.styleBlackTranslucent();
 
-    this.headerColor.tint('#280321');
+      this.headerColor.tint('#280321');
 
       this.splashScreen.hide();
-
-      timer(2500).subscribe(() => this.showSplash = false);
+      this.nav.push(OnboardingPage);
+      timer(2500).subscribe(() => {
+        this.showSplash = false;
+      });
 
     });
    

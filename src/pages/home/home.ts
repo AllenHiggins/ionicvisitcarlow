@@ -7,18 +7,17 @@ import { EventsPage } from '../events/events';
 import { SearchPage } from '../search/search';
 import { NetworkProvider } from '../../providers/network/network';
 
+import { timer } from 'rxjs/observable/timer';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-  @ViewChild(Slides) slides: Slides;
   list:any = [];
   sublist: any;
   empty: boolean = true;
   offLine: boolean = false;
-  skip: boolean = false;
-  skipBtn: string = "Skip";
 
   constructor(
     public navCtrl: NavController,
@@ -28,7 +27,6 @@ export class HomePage {
     public menuController: MenuController
   ){
     this.offLine = this.networkProvider.con;
-    console.log(this.offLine);
   }
 
 
@@ -49,9 +47,9 @@ export class HomePage {
   }
 
   ionViewWillEnter(){
-
-    this.menuController.swipeEnable( false );
+    this.menuController.swipeEnable(true);
     this.loadData();
+    
   }
 
   loadData(){
@@ -92,17 +90,6 @@ export class HomePage {
   doRefresh(refresher) {
     this.loadData();
     refresher.complete();
-  }
-
-  skipInfo(){
-    this.skip = true;
-    this.menuController.swipeEnable( true );
-  }
-
-  slideChanged(){
-    if(this.slides.isEnd()){
-      this.skipBtn = "Continue";
-    }
   }
 
 }

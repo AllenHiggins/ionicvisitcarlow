@@ -1,47 +1,5 @@
-<!--Info Slides-->
-<ion-content *ngIf="!skip">
-  <div class="slideXtra">
-    <h3 class="h2Xtra">Welcome to Visit Carlow</h3>
-  </div>
-  <ion-slides pager (ionSlideDidChange)="slideChanged()">
-    <ion-slide>
-      <!--favourites-->
-      <ion-icon class="infoIcon" ios="ios-heart-outline" md="md-heart-outline"></ion-icon>
-      <h3>Favourites</h3>
-      <p>Create your own favourites list</p>
-    </ion-slide>
-    <ion-slide>
-      <!--Likes-->
-      <ion-icon *ngIf="!like" class="infoIcon" ios="ios-checkmark-circle-outline" md="md-checkmark-circle-outline"></ion-icon> 
-      <h3>Likes</h3>
-      <p>Add a like to a listing</p>
-    </ion-slide>
-    <ion-slide>
-      <!--Google Maps-->
-      <ion-icon ios="ios-map" md="ios-map-outline" class="infoIcon"></ion-icon>
-      <h3>Google Map</h3>
-      <p>View the location of a listing on Google Map's</p>
-    </ion-slide>
-    <ion-slide>
-      <!--Website and social media-->
-      <ul>
-          <li><ion-icon ios="ios-globe" md="md-globe"></ion-icon></li>
-          <li><ion-icon name="logo-facebook"></ion-icon></li>  
-          <li><ion-icon name="logo-twitter"></ion-icon></li>
-          <li><ion-icon name="logo-instagram"></ion-icon></li>
-      </ul>
-      <h3>Social Media</h3>
-      <p>Discover more through our intergrated<br />social media links</p>
-    </ion-slide>
-  </ion-slides>
-    <div class="sliderBottom">
-      <h4 class="infoSkip" (click)="skipInfo()">{{skipBtn}}</h4>
-    </div>
-    <div class="backDropSlider"></div>
-</ion-content>
-
 <!--Main Page-->
-<ion-content *ngIf="skip">
+<ion-content>
 <ion-header>
   <ion-navbar>
     <button ion-button menuToggle>

@@ -41,6 +41,7 @@ import { SearchPage } from '../pages/search/search';
 import { EventInfoPage } from '../pages/event-info/event-info';
 import { ContactsPage } from '../pages/contacts/contacts';
 import { ContactsProvider } from '../providers/contacts/contacts';
+import { OnboardingPage } from '../pages/onboarding/onboarding';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { ContactsProvider } from '../providers/contacts/contacts';
     PopularPage,
     SearchPage,
     EventInfoPage,
-    ContactsPage
+    ContactsPage,
+    OnboardingPage
   ],
   imports: [
     BrowserModule,
@@ -79,7 +81,8 @@ import { ContactsProvider } from '../providers/contacts/contacts';
     PopularPage,
     SearchPage,
     EventInfoPage,
-    ContactsPage
+    ContactsPage,
+    OnboardingPage
   ],
   providers: [
     Network,
