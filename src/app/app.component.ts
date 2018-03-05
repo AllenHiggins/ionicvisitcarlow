@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform} from 'ionic-angular';
+import { Nav, Platform,MenuController} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
@@ -27,6 +27,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   showSplash = true;
+  menu:any;
 
   rootPage: any = HomePage;
 
@@ -37,8 +38,11 @@ export class MyApp {
     public statusBar: StatusBar, 
     public splashScreen: SplashScreen,
     public InAppBrowser: InAppBrowser,
-    private headerColor: HeaderColor) {
+    private headerColor: HeaderColor,
+    private menuController: MenuController) {
     this.initializeApp();
+
+    
     
     const path = 'assets/imgs/';
 
@@ -92,7 +96,10 @@ export class MyApp {
   }
 
   initializeApp() {
+    this.menuController.swipeEnable( false );
+    //$ionicSideMenuDelegate.canDragContent(false);
     this.platform.ready().then(() => {
+      
       // platform is ready and our plugins are available.
     
       //this.statusBar.styleDefault();
@@ -104,11 +111,11 @@ export class MyApp {
       this.statusBar.backgroundColorByHexString('#280321');
       this.statusBar.styleBlackTranslucent();
 
-      this.headerColor.tint('#280321');
+    this.headerColor.tint('#280321');
 
       this.splashScreen.hide();
 
-      //timer(2500).subscribe(() => this.showSplash = false);
+      timer(2500).subscribe(() => this.showSplash = false);
 
     });
    

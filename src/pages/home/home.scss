@@ -11,7 +11,7 @@ page-home {
     .slideXtra{
         top: 30%;
         position: absolute;
-        color: white;  
+        color: rgb(97, 24, 97);  
         margin: auto; 
         width: 100%;
         
@@ -35,7 +35,7 @@ page-home {
         bottom: 100px;
         width: 100%;
         .infoSkip{
-            color: rgb(243, 243, 243);
+            color: rgb(97, 24, 97);
             display: block;
             margin: auto;
             text-align: center;
@@ -49,20 +49,20 @@ page-home {
         margin-left: 5%;
         width: 90%;
         height: 30px;
-        background-color: rgb(177, 32, 145);
+        background-color: rgb(59, 5, 48);
         position: absolute;
-        opacity: 0.2;
+        opacity: 1;
         border-radius: 100px;
     }
 
     ion-slides{
-        background-color: hsl(319, 45%, 16%);;
+        background-color: rgb(255, 254, 254);;
         ion-slide{
             h3{
-                color: white;
+                color: rgb(97, 24, 97);
             }
             p{
-                color: rgb(247, 244, 244);
+                color: rgb(97, 24, 97);
                 font-size: 14px;
             }
 
@@ -71,11 +71,11 @@ page-home {
                 padding: 0px;
                 li{
                     display: inline-block;
-                    color: white;
+                    color: rgb(97, 24, 97);
                     padding: 5px;
                     ion-icon{
                         font-size: 30px;
-                        text-shadow: 1px 2px 1px rgb(0, 0, 0);
+                        
                     }
                 }
             }
@@ -84,12 +84,15 @@ page-home {
     
     ion-icon.infoIcon{
         font-size: 40px;
-        color: white;
-        text-shadow: 1px 2px 1px rgb(0, 0, 0);
+        color: rgb(97, 24, 97);
     }
   
     .swiper-pagination-bullet-active{
-        background-color: white;
+        background-color: rgb(252, 252, 252);
+    }
+
+    .swiper-pagination-bullet{
+        background-color: rgb(216, 213, 216);
     }
 
     .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-container-horizontal > .swiper-pagination-bullets{

@@ -1,5 +1,5 @@
 import { Component,ViewChild } from '@angular/core';
-import { NavController, NavParams,Slides } from 'ionic-angular';
+import { NavController, NavParams,Slides,MenuController } from 'ionic-angular';
 import { CategoriesProvider } from '../../providers/categories/categories';
 import { SubpagePage } from '../subpage/subpage';
 import { ListingsPage } from '../listings/listings';
@@ -24,7 +24,8 @@ export class HomePage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public CategoriesProvider: CategoriesProvider,
-    public networkProvider: NetworkProvider
+    public networkProvider: NetworkProvider,
+    public menuController: MenuController
   ){
     this.offLine = this.networkProvider.con;
     console.log(this.offLine);
@@ -48,6 +49,8 @@ export class HomePage {
   }
 
   ionViewWillEnter(){
+
+    this.menuController.swipeEnable( false );
     this.loadData();
   }
 
@@ -93,6 +96,7 @@ export class HomePage {
 
   skipInfo(){
     this.skip = true;
+    this.menuController.swipeEnable( true );
   }
 
   slideChanged(){
