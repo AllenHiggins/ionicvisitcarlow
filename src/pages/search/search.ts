@@ -104,7 +104,7 @@ export class SearchPage {
 
   openLink(){
     const url = 'https://www.visitcarlow.ie/'
-    const browser = this.InAppBrowser.create(url,'_system');
+    this.InAppBrowser.create(url,'_system');
   }
 
 }

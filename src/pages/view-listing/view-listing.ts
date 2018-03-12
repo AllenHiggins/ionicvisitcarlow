@@ -11,6 +11,7 @@ import { LikesProvider } from '../../providers/likes/likes';
 import { NetworkProvider } from '../../providers/network/network';
 import { MapPage } from '../map/map';
 import { SearchPage } from '../search/search';
+import { CommentsPage } from '../comments/comments';
 
 @IonicPage()
 @Component({
@@ -196,7 +197,7 @@ export class ViewListingPage {
         url = this.instagram;
       break;
     }
-    const browser = this.InAppBrowser.create(url,'_system');
+    this.InAppBrowser.create(url,'_system');
   }
 
   addToFabs(){
@@ -212,6 +213,11 @@ export class ViewListingPage {
         this.FabsProvider.removeFromList(this.id);
         console.log('removeing: ' , this.id);
       }
+  }
+
+  userComments(){
+    const modal = this.ModalController.create("CommentsPage",{data: this.id} );
+    modal.present();
   }
 
   openModal(event){

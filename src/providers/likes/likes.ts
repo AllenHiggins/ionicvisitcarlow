@@ -5,7 +5,6 @@ import { Storage } from '@ionic/storage';
 @Injectable()
 export class LikesProvider {
   private list: any;
-  private isIN: boolean;
 
   constructor(
     public http: HttpClient,

@@ -99,6 +99,7 @@ ion-refresher{
     }
 }
 
+.LOGIN,
 .infoSkip,
 .tryVCWeb,
 .input-wrapper:active,
@@ -110,6 +111,13 @@ a:active{
     animation-timing-function: ease-in-out;
 }
 
+.SLbtn{
+    background-color: rgb(65, 11, 65);
+}
+
+.SLbtn:hover{
+    background-color: purple;
+}
 
 .vcMedia{
     padding-top: 20px;

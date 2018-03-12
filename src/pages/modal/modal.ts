@@ -1,6 +1,6 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController,NavParams,ViewController } from 'ionic-angular';
-import { LaunchNavigator,LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
+import { LaunchNavigator } from '@ionic-native/launch-navigator';
 
 declare var google: any;
 @IonicPage()

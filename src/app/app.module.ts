@@ -43,6 +43,20 @@ import { ContactsPage } from '../pages/contacts/contacts';
 import { ContactsProvider } from '../providers/contacts/contacts';
 import { OnboardingPage } from '../pages/onboarding/onboarding';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule} from 'angularfire2/auth';
+import { FIREBASE_CONFIG } from '../angular.firebase'
+
+//import firebase from 'firebase';
+import { UsercommentsProvider } from '../providers/usercomments/usercomments';
+import { AuthProvider } from '../providers/auth/auth';
+import { FormsModule } from '@angular/forms'; 
+import { GooglePlus } from '@ionic-native/google-plus';
+
+
+import {CommentsPage} from '../pages/comments/comments';
+
+
 @NgModule({
   declarations: [
     MyApp,
@@ -57,7 +71,8 @@ import { OnboardingPage } from '../pages/onboarding/onboarding';
     SearchPage,
     EventInfoPage,
     ContactsPage,
-    OnboardingPage
+    OnboardingPage,
+    CommentsPage
   ],
   imports: [
     BrowserModule,
@@ -66,7 +81,10 @@ import { OnboardingPage } from '../pages/onboarding/onboarding';
     HttpClientModule,
     ParallaxModule,
     ElasticHeaderModule,
-    ComponentsModule
+    ComponentsModule,
+    AngularFireModule.initializeApp(FIREBASE_CONFIG),
+    AngularFireAuthModule,
+    FormsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -82,7 +100,9 @@ import { OnboardingPage } from '../pages/onboarding/onboarding';
     SearchPage,
     EventInfoPage,
     ContactsPage,
-    OnboardingPage
+    OnboardingPage,
+    CommentsPage
+
   ],
   providers: [
     Network,
@@ -107,7 +127,10 @@ import { OnboardingPage } from '../pages/onboarding/onboarding';
     MostPopularProvider,
     NetworkProvider,
     SearchProvider,
-    ContactsProvider
+    ContactsProvider,
+    UsercommentsProvider,
+    AuthProvider,
+    GooglePlus
 
   ]
 })

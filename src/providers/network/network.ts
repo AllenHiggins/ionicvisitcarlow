@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Network } from '@ionic-native/network';
 import { ToastController } from 'ionic-angular';
-import { Subscription } from 'rxjs/Subscription';
 
 @Injectable()
 export class NetworkProvider {

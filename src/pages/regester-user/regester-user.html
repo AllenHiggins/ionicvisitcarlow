@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Register</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding class="animated fadeIn">
+    <ion-item>
+        <ion-label floating>Email</ion-label>
+        <ion-input type="text" [(ngModel)]="user.email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Password</ion-label>
+      <ion-input type="password" [(ngModel)]="user.password"></ion-input>
+    </ion-item>
+    <br />
+    <button ion-button  (click)="register(user)" class="SLbtn">Register</button>
+    <button ion-button color="light" (click)="cancel()">Cancel</button>
+</ion-content>

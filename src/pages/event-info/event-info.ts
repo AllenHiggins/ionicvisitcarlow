@@ -178,7 +178,7 @@ export class EventInfoPage {
 
   openWebBrowser(){
     let url = this.eventPage;
-    const browser = this.InAppBrowser.create(url,'_system');
+    this.InAppBrowser.create(url,'_system');
   }
 
   addToFabs(){

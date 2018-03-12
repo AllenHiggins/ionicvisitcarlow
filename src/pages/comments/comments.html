@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>comments<div class="LOGIN" (click)="goToLogin()">{{ btnText }}</div></ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-content *ngIf="!logInSelected" class="animated fadeIn">
+    <h1>Comments</h1>
+  </ion-content>
+
+
+  <ion-content *ngIf="logInSelected" class="animated fadeIn">
+    <ion-icon ios="ios-close" md="md-close" (click)="close()"></ion-icon>
+
+
+    <br /><br />
+    <p>Social Login</p>
+    <button ion-button block (click)="logInGoogle()" class="SLbtn">
+      With Google
+      <ion-icon ios="logo-google" md="logo-google" class="SL"></ion-icon>
+    </button>
+    <br /><hr>
+
+
+    <p>My account</p>
+    <ion-item>
+      <ion-label floating>Email</ion-label>
+      <ion-input type="text" [(ngModel)]="user.email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Password</ion-label>
+      <ion-input type="password" [(ngModel)]="user.password"></ion-input>
+    </ion-item>
+    <br />
+    <button ion-button (click)="logIn(user)" class="SLbtn">LogIn</button>
+    <button ion-button color="light" (click)="register()">Register</button>
+  </ion-content>
+</ion-content>

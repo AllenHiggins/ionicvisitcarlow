@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav,Platform,MenuController} from 'ionic-angular';
+import { Nav,Platform} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
@@ -14,6 +14,8 @@ import { FabsPage } from '../pages/fabs/fabs';
 import { PopularPage } from '../pages/popular/popular';
 
 import { timer } from 'rxjs/observable/timer';
+
+import {CommentsPage} from '../pages/comments/comments';
 
 @Component({
   templateUrl: 'app.html'
@@ -30,7 +32,8 @@ export class MyApp {
   showSplash = true;
   menu:any;
 
-  rootPage: any = HomePage;
+  //rootPage: any = HomePage;
+  rootPage: any = CommentsPage;
 
   pages: Array<{title: string, component: any}>;
 
@@ -39,8 +42,7 @@ export class MyApp {
     public statusBar: StatusBar, 
     public splashScreen: SplashScreen,
     public InAppBrowser: InAppBrowser,
-    private headerColor: HeaderColor,
-    private menuController: MenuController) {
+    private headerColor: HeaderColor) {
     this.initializeApp();
 
     
@@ -145,6 +147,6 @@ export class MyApp {
         url = this.instagram;
       break;
     }
-    const browser = this.InAppBrowser.create(url,'_system');
+    this.InAppBrowser.create(url,'_system');
   }
 }

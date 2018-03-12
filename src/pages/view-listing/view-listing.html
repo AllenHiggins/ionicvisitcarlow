@@ -7,83 +7,88 @@
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-spinner name='dots' class="cardImg"></ion-spinner>
   </ion-refresher>
-  <div class="par">
-    <img src={{imagePath}} class="viewListingImg"/>
-  </div>
-  <div class='viewListingInfo'>
-    <div class="mediaLinks">
-      <ul>
-        <li>
-            <ion-icon ios="ios-map" md="ios-map-outline" (click)="openModal()"></ion-icon>
-        </li>
-        <li>
-          <div *ngIf="website" (click)="openWebBrowser('website')"> 
-            <ion-icon ios="ios-globe" md="md-globe"></ion-icon>
-          </div>
-        </li>
-        <li>
-          <div *ngIf="facebook" (click)="openWebBrowser('faceBook')">
-            <ion-icon name="logo-facebook"></ion-icon>
-          </div>
-        </li>  
-        <li>
-          <div *ngIf="twitter" (click)="openWebBrowser('twitter')">
-            <ion-icon name="logo-twitter"></ion-icon>
-          </div>
-        </li>
-        <li>
-          <div *ngIf="instagram" (click)="openWebBrowser('instagram')"><ion-icon name="logo-instagram"></ion-icon></div>
-        </li>
-        <li>
-           <div class="heart" (click)="addToFabs()">
-              <ion-icon class="heart" *ngIf="!fabs" ios="ios-heart-outline" md="md-heart-outline"></ion-icon>
-              <ion-icon class="heart animated rubberBand" *ngIf="fabs" ios="ios-heart" md="md-heart"></ion-icon>
-          </div> 
-        </li>
-      </ul>
+    <div class="par">
+      <img src={{imagePath}} class="viewListingImg"/>
     </div>
-    <br />
-    <br />
-    <hr>
-    <div *ngIf="noGPS">Turn on GPS for Distance Martix</div>
-    <div *ngIf="!noGPS" class="DISLIST">
-        Distance: {{carList.distance}}<br />
-      <ul class="animated fadeInRight">
-        <li >
-          <ion-icon class="car" ios="ios-car" md="md-car"></ion-icon> 
-          <br/>{{carList.car}}
-        </li>
-        <li>
-            <ion-icon ios="ios-bicycle" md="md-bicycle"></ion-icon>
-            <br/>{{bicyclingList.bicycling}}
+    <div class='viewListingInfo'>
+      <div class="mediaLinks">
+        <ul>
+          <li>
+              <ion-icon ios="ios-text" md="md-text" (click)="userComments()"></ion-icon>
           </li>
-        <li>
-            <ion-icon ios="ios-walk" md="md-walk"></ion-icon>
-            <br/>{{walkingList.walking}}
+          <li>
+              <ion-icon ios="ios-map" md="ios-map-outline" (click)="openModal()"></ion-icon>
           </li>
-      </ul>
+          <li>
+            <div *ngIf="website" (click)="openWebBrowser('website')"> 
+              <ion-icon ios="ios-globe" md="md-globe"></ion-icon>
+            </div>
+          </li>
+          <li>
+            <div *ngIf="facebook" (click)="openWebBrowser('faceBook')">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </div>
+          </li>  
+          <li>
+            <div *ngIf="twitter" (click)="openWebBrowser('twitter')">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </div>
+          </li>
+          <li>
+            <div *ngIf="instagram" (click)="openWebBrowser('instagram')"><ion-icon name="logo-instagram"></ion-icon></div>
+          </li>
+          <li>
+            <div class="heart" (click)="addToFabs()">
+                <ion-icon class="heart" *ngIf="!fabs" ios="ios-heart-outline" md="md-heart-outline"></ion-icon>
+                <ion-icon class="heart animated rubberBand" *ngIf="fabs" ios="ios-heart" md="md-heart"></ion-icon>
+            </div> 
+          </li>
+        </ul>
+      </div>
+      <br />
+      <br />
       <hr>
-      <div class="title">
-        {{title}} 
-        <div class="likeBTN" (click)="likeListing()">
-          <ion-icon *ngIf="!like" class="like" ios="ios-checkmark-circle-outline" md="md-checkmark-circle-outline"></ion-icon> 
-          <ion-icon class="heart animated rubberBand" *ngIf="like" ios="ios-checkmark-circle" md="md-checkmark-circle"></ion-icon>
-          <span *ngIf="numberOfLikes != 0">{{numberOfLikes}}</span>
-        </div>
-      </div> 
-      <p class="xtra">
-        {{address}}
-        <br />
-        <span *ngIf="phone != '' ">
-          Phone: <a href={{phoneNumberLink}} class="button button-positve">{{phone}}</a>
-        </span>
-        <br />
-        <span *ngIf="email != '' ">
-          Email: <a href="{{emailLink}}" class="button button-positve">{{email}}</a>
-        </span>
-      </p>  
+      <div *ngIf="noGPS">Turn on GPS for Distance Martix</div>
+      <div *ngIf="!noGPS" class="DISLIST">
+          Distance: {{carList.distance}}<br />
+        <ul class="animated fadeInRight">
+          <li >
+            <ion-icon class="car" ios="ios-car" md="md-car"></ion-icon> 
+            <br/>{{carList.car}}
+          </li>
+          <li>
+              <ion-icon ios="ios-bicycle" md="md-bicycle"></ion-icon>
+              <br/>{{bicyclingList.bicycling}}
+            </li>
+          <li>
+              <ion-icon ios="ios-walk" md="md-walk"></ion-icon>
+              <br/>{{walkingList.walking}}
+            </li>
+        </ul>
+        <hr>
+        <div class="title">
+          {{title}} 
+          <div class="likeBTN" (click)="likeListing()">
+            <ion-icon *ngIf="!like" class="like" ios="ios-checkmark-circle-outline" md="md-checkmark-circle-outline"></ion-icon> 
+            <ion-icon class="heart animated rubberBand" *ngIf="like" ios="ios-checkmark-circle" md="md-checkmark-circle"></ion-icon>
+            <span *ngIf="numberOfLikes != 0">{{numberOfLikes}}</span>
+          </div>
+        </div> 
+        <p class="xtra">
+          {{address}}
+          <br />
+          <span *ngIf="phone != '' ">
+            Phone: <a href={{phoneNumberLink}} class="button button-positve">{{phone}}</a>
+          </span>
+          <br />
+          <span *ngIf="email != '' ">
+            Email: <a href="{{emailLink}}" class="button button-positve">{{email}}</a>
+          </span>
+        </p>  
+      </div>
+      <hr>
+      <div style=" white-space: pre-wrap;" class="txtBody">{{text}}</div>  
     </div>
-    <hr>
-    <div style=" white-space: pre-wrap;" class="txtBody">{{text}}</div>  
-  </div>
-</ion-content>
+</ion-content>    
+
+

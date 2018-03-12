@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,ViewController, Platform } from 'ionic-angular';
 import { LaunchNavigator } from '@ionic-native/launch-navigator';
 import { NetworkProvider } from '../../providers/network/network';
@@ -6,11 +6,7 @@ import {
   GoogleMaps,
   GoogleMap,
   GoogleMapsEvent,
-  GoogleMapOptions,
-  CameraPosition,
-  MarkerOptions,
-  Marker,
-  LatLng,
+  GoogleMapOptions
  } from '@ionic-native/google-maps';
  import { SearchPage } from '../search/search';
 
@@ -26,7 +22,6 @@ export class MapPage {
   lat : any;
   long: any;
   address: string;
-  private location:LatLng;
 
   constructor(
     public navCtrl: NavController, 

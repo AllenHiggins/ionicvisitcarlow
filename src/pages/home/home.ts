@@ -1,13 +1,11 @@
-import { Component,ViewChild } from '@angular/core';
-import { NavController, NavParams,Slides,MenuController } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { NavController, NavParams,MenuController } from 'ionic-angular';
 import { CategoriesProvider } from '../../providers/categories/categories';
 import { SubpagePage } from '../subpage/subpage';
 import { ListingsPage } from '../listings/listings';
 import { EventsPage } from '../events/events';
 import { SearchPage } from '../search/search';
 import { NetworkProvider } from '../../providers/network/network';
-
-import { timer } from 'rxjs/observable/timer';
 
 @Component({
   selector: 'page-home',
