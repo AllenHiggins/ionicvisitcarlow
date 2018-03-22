@@ -23,7 +23,6 @@ export class RegesterUserPage {
     console.log('ionViewDidLoad RegesterUserPage');
   }
 
-
   async register(user: User){
     try{
       const result = await this.authProvider.registerANewUser(user);

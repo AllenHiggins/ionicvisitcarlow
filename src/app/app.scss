@@ -3,6 +3,11 @@
     font-family:Palatino, Verdana, sans-serif;
 }
 
+.log{
+    background-color: #f1eef1;
+    box-shadow: 1px 2px 1px rgb(151, 151, 151);
+}
+
 .splash{
 
     position: absolute;
@@ -111,11 +116,19 @@ a:active{
     animation-timing-function: ease-in-out;
 }
 
+.SLbtn1{
+    background-color: rgb(136, 4, 4);
+}
+
+.SLbtn1:focus{
+    background-color: rgb(206, 12, 12);
+}
+
 .SLbtn{
     background-color: rgb(65, 11, 65);
 }
 
-.SLbtn:hover{
+.SLbtn:focus{
     background-color: purple;
 }
 

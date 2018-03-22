@@ -1,5 +1,13 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ModalController,ToastController,Platform } from 'ionic-angular';
+import { 
+  IonicPage,
+  NavController,
+  NavParams,
+  ModalController,
+  ToastController,
+  Platform,
+  ViewController 
+} from 'ionic-angular';
 import { logInPage } from '../logIn/logInPage';
 import { User } from '../../models/user';
 import { RegesterUserPage } from '../regester-user/regester-user';
@@ -8,6 +16,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
 import { GooglePlus } from '@ionic-native/google-plus';
+import { UsercommentsProvider } from '../../providers/usercomments/usercomments';
 
 @IonicPage()
 @Component({
@@ -30,14 +39,29 @@ export class CommentsPage {
     public toast:ToastController,
     public AngularFireAuth: AngularFireAuth,
     public platform: Platform,
-    public gplus: GooglePlus
+    public gplus: GooglePlus,
+    public ViewController: ViewController,
+    public UsercommentsProvider: UsercommentsProvider
   
   ) {
     this.userOb = this.AngularFireAuth.authState;
   }
 
+  ionViewWillLoad(){
+    console.log('ionWillLoad CommentsPage'); 
+    // this.UsercommentsProvider.getComments
+
+  }
+
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CommentsPage'); 
+     console.log('ionViewDidLoad CommentsPage'); 
+  }
+
+  makeCommentRating(){
+   // if logged in
+      // this.UsercommentsProvider.addComment
+   // else
+      // need to log in... 
   }
 
   close(){
@@ -128,6 +152,10 @@ export class CommentsPage {
           duration: 3000
         }).present();
       }
+  }
+
+  closeModal(){
+    this.ViewController.dismiss();
   }
 
 }

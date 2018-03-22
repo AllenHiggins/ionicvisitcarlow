@@ -32,8 +32,8 @@ export class MyApp {
   showSplash = true;
   menu:any;
 
-  //rootPage: any = HomePage;
-  rootPage: any = CommentsPage;
+  rootPage: any = HomePage;
+  //rootPage: any = CommentsPage;
 
   pages: Array<{title: string, component: any}>;
 

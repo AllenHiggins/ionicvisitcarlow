@@ -1,4 +1,18 @@
 page-comments {
+
+
+    .SloginB{
+        //background-color: #f1eef1;
+        height: 100px;
+        padding: 5px;
+    }
+
+    .SloginA{
+       // background-color: #f1eef1;
+        height: 260px;
+        padding: 5px;
+    }
+
     .LOGIN{
         width: 65px;
         float: right;
@@ -15,4 +29,14 @@ page-comments {
         right: 25px;
         font-size: 20px;
     }
+
+    .toolbar-title-md {
+        padding-left: 52px;
+    }
+
+    ion-icon::before {
+        padding-left: 20px;
+        margin-top: -10px;
+    }
+
 }

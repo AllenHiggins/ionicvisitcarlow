@@ -54,7 +54,7 @@ import { FormsModule } from '@angular/forms';
 import { GooglePlus } from '@ionic-native/google-plus';
 
 
-import {CommentsPage} from '../pages/comments/comments';
+//import {CommentsPage} from '../pages/comments/comments';
 
 
 @NgModule({
@@ -72,7 +72,7 @@ import {CommentsPage} from '../pages/comments/comments';
     EventInfoPage,
     ContactsPage,
     OnboardingPage,
-    CommentsPage
+ //   CommentsPage
   ],
   imports: [
     BrowserModule,
@@ -101,7 +101,7 @@ import {CommentsPage} from '../pages/comments/comments';
     EventInfoPage,
     ContactsPage,
     OnboardingPage,
-    CommentsPage
+   // CommentsPage
 
   ],
   providers: [

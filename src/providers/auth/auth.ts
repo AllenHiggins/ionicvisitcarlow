@@ -17,7 +17,7 @@ export class AuthProvider {
 
   async userLogIn(user: User){
     try{
-      const result = await this.AFireAuth.auth.signInWithEmailAndPassword(user.email,user.password);
+      const result = await this.AFireAuth.auth.signInWithEmailAndPassword(user.email.trim(),user.password.trim());
       console.log(result); 
       return result;  
     }catch(e){
@@ -27,7 +27,7 @@ export class AuthProvider {
 
   async registerANewUser(user: User){
     try{
-      const result = await this.AFireAuth.auth.createUserWithEmailAndPassword(user.email, user.password);
+      const result = await this.AFireAuth.auth.createUserWithEmailAndPassword(user.email.trim(), user.password.trim());
       console.log(result); 
       return result;    
     }catch(e){
