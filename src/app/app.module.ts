@@ -47,15 +47,10 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule} from 'angularfire2/auth';
 import { FIREBASE_CONFIG } from '../angular.firebase'
 
-//import firebase from 'firebase';
 import { UsercommentsProvider } from '../providers/usercomments/usercomments';
 import { AuthProvider } from '../providers/auth/auth';
 import { FormsModule } from '@angular/forms'; 
 import { GooglePlus } from '@ionic-native/google-plus';
-
-
-//import {CommentsPage} from '../pages/comments/comments';
-
 
 @NgModule({
   declarations: [
@@ -71,8 +66,7 @@ import { GooglePlus } from '@ionic-native/google-plus';
     SearchPage,
     EventInfoPage,
     ContactsPage,
-    OnboardingPage,
- //   CommentsPage
+    OnboardingPage
   ],
   imports: [
     BrowserModule,
@@ -100,9 +94,7 @@ import { GooglePlus } from '@ionic-native/google-plus';
     SearchPage,
     EventInfoPage,
     ContactsPage,
-    OnboardingPage,
-   // CommentsPage
-
+    OnboardingPage
   ],
   providers: [
     Network,

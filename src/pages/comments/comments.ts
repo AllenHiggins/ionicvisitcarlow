@@ -13,7 +13,12 @@ import { User } from '../../models/user';
 import { RegesterUserPage } from '../regester-user/regester-user';
 import { AuthProvider } from '../../providers/auth/auth';
 import { AngularFireAuth } from 'angularfire2/auth';
+
+
 import * as firebase from 'firebase/app';
+//import {AuthCredential} from '@firebase/auth-types';
+
+
 import { Observable } from 'rxjs/Observable';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { UsercommentsProvider } from '../../providers/usercomments/usercomments';
@@ -122,17 +127,17 @@ export class CommentsPage {
     modal.present();
   }
 
-  async logInGoogle(){
+ /* async logInGoogle(){
       try{
         const gplusUser = await this.gplus.login({
           'webClientId': '1001239315906-3260jiiieunkfl4uk5tlfisnrpp72d2a.apps.googleusercontent.com',
           'offline': true,
           'scopes': 'profile email'
-        });
+        })
 
         const result = await this.AngularFireAuth.auth.signInWithCredential(
-          firebase.auth.GoogleAuthProvider.credential(gplusUser.idToken) 
-        );
+          firebase.auth.GoogleAuthProvider.credential(gplusUser.idToken)
+        )
 
         if(result){
           this.user.logIn = true;
@@ -152,7 +157,7 @@ export class CommentsPage {
           duration: 3000
         }).present();
       }
-  }
+  }*/
 
   closeModal(){
     this.ViewController.dismiss();
