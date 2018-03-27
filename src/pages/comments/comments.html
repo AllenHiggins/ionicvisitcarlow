@@ -1,24 +1,55 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Comments<div class="LOGIN" (click)="goToLogin()">{{ btnText }}</div></ion-title>
+    <ion-title>Comments
+      <div class="LOGIN" (click)="goToLogin()">
+        <div *ngIf="user.logIn">LogOut</div>
+        <div *ngIf="!user.logIn">LogIn</div>
+      </div>
+    </ion-title>
     <ion-icon class="modalBack" ios="ios-arrow-back" md="md-arrow-back" (click)="closeModal()"></ion-icon>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
-  <ion-content *ngIf="!logInSelected" class="animated fadeIn">
-    <h1>Comments</h1>
+  <ion-icon class="canCommentIcon" *ngIf="user.logIn" ios="ios-chatbubbles" md="md-chatbubbles" (click)="commentToggle()"></ion-icon>
+  <div *ngIf="userComment" class="animated fadeInDown">
+    <ion-item>
+        <ion-label floating>Comment</ion-label>
+        <ion-input type="text" [(ngModel)]="user.comment"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>rating</ion-label>
+        <ion-input type="number" [(ngModel)]="user.rating"></ion-input>
+      </ion-item>
+      <br />
+      <button ion-button (click)="comment(user)" class="SLbtn">Comment</button> 
+  </div>
 
 
 
+  <div *ngIf="!logInSelected" class="animated fadeIn">
 
+    <ion-item *ngFor="let item of commentsList">
+      <!--Get stars for rating-->
+      <div>
+        <ul class="stars animated fadeInRight">
+            <li *ngFor="let in of counter(item.rating)">
+              <ion-icon ios="ios-star" md="md-star"></ion-icon>
+            </li>
+        </ul>
+      </div>
+      <p>{{item.comment}}</p><br />
+      <p>{{item.datatime | date: 'longDate'}}</p>
+    </ion-item>
+    <div class="noComments" *ngIf="numOfComments < 1">
+      <p>No Comments posted</p>
+      <p>Be the first to Comment and rate this listing</p>
+    </div>
+  </div>
 
-
-
-  </ion-content>
-  <ion-content *ngIf="logInSelected" class="animated fadeIn log">
-    <ion-icon ios="ios-close" md="md-close" (click)="close()"></ion-icon>
+  <div *ngIf="logInSelected" class="animated fadeIn log">
+    <ion-icon class="close" ios="ios-backspace" md="md-backspace" (click)="close()"></ion-icon>
     <br /><br />
     <div class="SloginB">
       <p>Social Login</p>
@@ -41,6 +72,7 @@
       <br />
       <button ion-button (click)="logIn(user)" class="SLbtn">LogIn</button>
       <button ion-button color="light" (click)="register()">Register</button>
-    </div>
-  </ion-content>
+    </div>  
+  </div>
+
 </ion-content>

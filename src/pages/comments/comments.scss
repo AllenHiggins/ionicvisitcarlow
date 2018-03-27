@@ -1,5 +1,36 @@
 page-comments {
 
+    .noComments{
+        margin-top: 100px;
+        
+        p{
+            color: grey;
+            text-align: center;
+        }
+    }
+
+    .stars{
+        padding: 0px;
+
+        li{
+            display: inline;
+            color: yellow;
+            text-shadow: 1px 1px 1px grey;
+            font-size: 12px;
+        }
+
+        ion-icon{
+            padding: 0px;
+            font-size: 20px;
+        }
+
+        ion-icon::before{
+            padding: 0px;
+            margin: 0px;
+        }
+        
+    }
+
 
     .SloginB{
         //background-color: #f1eef1;
@@ -17,6 +48,13 @@ page-comments {
         width: 65px;
         float: right;
     }
+
+    ion-icon.canCommentIcon,
+    ion-icon.close{
+        float: right;
+        color:rgb(78, 15, 78);
+    }
+    
 
     .SL{
         right: 25px;

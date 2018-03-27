@@ -9,12 +9,27 @@ export class UsercommentsProvider {
   }
 
 
-  getComments(){
-    //return this.http.get();
+  getComments(id){
+    return this.http.get("http://inframe.pythonanywhere.com/listings/comments/request/"+id);
   }
 
-  addComment(){
+  async addComment(userComment,userRating,id){
+    try{
+      const result = await this.http.post("http://inframe.pythonanywhere.com/listing/comments/add", {
+        comment: userComment,
+        rating: userRating,
+        listID: id
+      });
 
+     
+      //comment added
+      //result.fail
+
+      console.log("new comment ---> ", result);
+      return result;
+    }catch(e){
+      return e;
+    }
   }
 
 }

@@ -216,7 +216,7 @@ export class ViewListingPage {
   }
 
   userComments(){
-    const modal = this.ModalController.create("CommentsPage",{data: this.id} );
+    const modal = this.ModalController.create("CommentsPage",{id: this.id} );
     modal.present();
   }
 

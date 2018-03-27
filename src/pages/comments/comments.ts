@@ -29,12 +29,15 @@ import { UsercommentsProvider } from '../../providers/usercomments/usercomments'
   templateUrl: 'comments.html',
 })
 export class CommentsPage {
-
+  id:number;
+  numOfComments: number = 0;
+  commentsList: any;
   userOb: Observable<firebase.User>;
 
   user = {} as User;
   btnText: string = "LogIn";
   logInSelected: boolean = false;
+  userComment: boolean = false;
 
   constructor(
     public navCtrl: NavController, 
@@ -50,12 +53,21 @@ export class CommentsPage {
   
   ) {
     this.userOb = this.AngularFireAuth.authState;
+    
   }
 
+  getAllComments(){
+    this.UsercommentsProvider.getComments(this.id).subscribe(response =>{
+      this.commentsList = response;
+      this.commentsList = this.commentsList.Comments;
+      this.numOfComments = this.commentsList.length;
+      console.log("comments --->> : ", this.commentsList);
+    });
+  }
   ionViewWillLoad(){
     console.log('ionWillLoad CommentsPage'); 
-    // this.UsercommentsProvider.getComments
-
+    this.id = this.navParams.get('id');
+    this.getAllComments();
   }
 
   ionViewDidLoad() {
@@ -83,6 +95,7 @@ export class CommentsPage {
       this.user.email = '';
       this.user.password = '';
       this.logInSelected = false;
+      this.userComment = false;
       this.toast.create({
         message: "Logged Out",
         duration: 4000
@@ -97,14 +110,16 @@ export class CommentsPage {
         const result = await this.authProvider.userLogIn(user);
         if(result.email && result.uid){
           this.user.logIn = true;
+          this.userComment = true;
+          this.btnText = "logOut";
+          this.logInSelected = false;
           this.toast.create({
             message: "LogIn Successful",
             duration: 4000
           }).present();
-          this.btnText = "logOut";
-          this.logInSelected = false;
         }else{
           this.user.logIn = false;
+          this.userComment = false;
           this.toast.create({
             message: "Sorry, unable to LogIn at this time.",
             duration: 3000
@@ -125,6 +140,26 @@ export class CommentsPage {
   register(){
     const modal = this.ModalController.create("RegesterUserPage");
     modal.present();
+  }
+/////////////////////////////////////////////////////////////////////////////////
+  comment(user: User){
+   this.UsercommentsProvider.addComment(user.comment,user.rating,this.id).then(response =>{
+      console.log(response);
+      let date = new Date;
+      this.userComment = false;
+      let comments = {
+        comment:user.comment,
+        datatime:date,
+        rating:user.rating
+      }
+      this.commentsList.push(comments);
+      console.log(comments);
+      //this.getAllComments();
+    });
+  }
+
+  commentToggle(){
+    this.userComment = !this.userComment;
   }
 
  /* async logInGoogle(){
@@ -161,6 +196,10 @@ export class CommentsPage {
 
   closeModal(){
     this.ViewController.dismiss();
+  }
+
+  counter(i: any) {
+    return new Array(parseInt(i));
   }
 
 }
