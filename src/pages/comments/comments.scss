@@ -14,7 +14,7 @@ page-comments {
 
         li{
             display: inline;
-            color: yellow;
+            color: rgb(252, 198, 52);
             text-shadow: 1px 1px 1px grey;
             font-size: 12px;
         }
@@ -49,10 +49,23 @@ page-comments {
         float: right;
     }
 
+    .sPos{
+        padding-top: 10px;
+        width: 100px;
+        margin: auto;
+
+        li{
+            color:rgb(252, 198, 52);
+            
+        }
+    }
+
     ion-icon.canCommentIcon,
     ion-icon.close{
         float: right;
         color:rgb(78, 15, 78);
+        position: relative;
+        z-index: 1000;
     }
     
 

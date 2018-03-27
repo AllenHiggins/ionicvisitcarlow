@@ -15,21 +15,24 @@
   <ion-icon class="canCommentIcon" *ngIf="user.logIn" ios="ios-chatbubbles" md="md-chatbubbles" (click)="commentToggle()"></ion-icon>
   <div *ngIf="userComment" class="animated fadeInDown">
     <ion-item>
-        <ion-label floating>Comment</ion-label>
-        <ion-input type="text" [(ngModel)]="user.comment"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label floating>rating</ion-label>
-        <ion-input type="number" [(ngModel)]="user.rating"></ion-input>
-      </ion-item>
-      <br />
-      <button ion-button (click)="comment(user)" class="SLbtn">Comment</button> 
+      <ion-label floating>Comment</ion-label>
+      <ion-textarea rows="4" maxLength="100" [(ngModel)]="user.comment" name="comment"></ion-textarea>
+    </ion-item>
+    <div>
+      <ul class="stars sPos">
+          <li *ngFor="let in of counter(user.rating)">
+            <ion-icon ios="ios-star" md="md-star" class="animated fadeIn"></ion-icon>
+          </li>
+      </ul>
+    </div>
+    <ion-item>  
+      <ion-label floating>Rating</ion-label>
+      1<ion-range [(ngModel)]="user.rating" (ngModelChange)="user.rating = $event" name="rating" min="1" max="5" color="secondary" pin="true"></ion-range>5
+    </ion-item>
+    <br />
+    <button ion-button (click)="comment(user)" class="SLbtn">Comment</button> 
   </div>
-
-
-
   <div *ngIf="!logInSelected" class="animated fadeIn">
-
     <ion-item *ngFor="let item of commentsList">
       <!--Get stars for rating-->
       <div>
@@ -39,7 +42,7 @@
             </li>
         </ul>
       </div>
-      <p>{{item.comment}}</p><br />
+      <div class="commentText">{{item.comment}}</div><br />
       <p>{{item.datatime | date: 'longDate'}}</p>
     </ion-item>
     <div class="noComments" *ngIf="numOfComments < 1">

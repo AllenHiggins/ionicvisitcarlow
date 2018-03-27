@@ -31,9 +31,8 @@ import { UsercommentsProvider } from '../../providers/usercomments/usercomments'
 export class CommentsPage {
   id:number;
   numOfComments: number = 0;
-  commentsList: any;
+  commentsList: any = [];
   userOb: Observable<firebase.User>;
-
   user = {} as User;
   btnText: string = "LogIn";
   logInSelected: boolean = false;
@@ -67,6 +66,7 @@ export class CommentsPage {
   ionViewWillLoad(){
     console.log('ionWillLoad CommentsPage'); 
     this.id = this.navParams.get('id');
+    this.user.rating = 1;
     this.getAllComments();
   }
 
@@ -141,24 +141,55 @@ export class CommentsPage {
     const modal = this.ModalController.create("RegesterUserPage");
     modal.present();
   }
+
+
+
+  
 /////////////////////////////////////////////////////////////////////////////////
   comment(user: User){
-   this.UsercommentsProvider.addComment(user.comment,user.rating,this.id).then(response =>{
-      console.log(response);
-      let date = new Date;
-      this.userComment = false;
-      let comments = {
-        comment:user.comment,
-        datatime:date,
-        rating:user.rating
-      }
-      this.commentsList.push(comments);
-      console.log(comments);
-      //this.getAllComments();
-    });
+    if(user.comment == null){
+      this.toast.create({
+        message: "Plase enter a comment",
+        duration: 3000
+      }).present();
+    }else{
+
+      // should not be able to comment on same listing again
+          // local storage
+
+      // post
+
+      // perssistaint login
+          // local storage
+
+
+      // get comment from db in order of latest date frist - top 10
+
+      this.UsercommentsProvider.addComment(user.comment,user.rating,this.id).then(response =>{
+        console.log(response);
+        let date = new Date;
+        this.userComment = false;
+        let comments = {
+          comment:user.comment,
+          datatime:date,
+          rating:user.rating
+        }
+        this.commentsList.push(comments);
+        console.log(comments);
+        this.toast.create({
+          message: "Comment successful",
+          duration: 3000
+        }).present();
+        //this.getAllComments();  
+      });
+    }
+   
+  
   }
 
   commentToggle(){
+    this.user.comment = "";
+    this.user.rating = 1;
     this.userComment = !this.userComment;
   }
 
@@ -198,7 +229,7 @@ export class CommentsPage {
     this.ViewController.dismiss();
   }
 
-  counter(i: any) {
+  counter(i: any){ 
     return new Array(parseInt(i));
   }
 
