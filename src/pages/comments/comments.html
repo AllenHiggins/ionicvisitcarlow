@@ -2,8 +2,8 @@
   <ion-navbar>
     <ion-title>Comments
       <div class="LOGIN" (click)="goToLogin()">
-        <div *ngIf="user.logIn">LogOut</div>
-        <div *ngIf="!user.logIn">LogIn</div>
+        <div *ngIf="isLoggedIn">LogOut</div>
+        <div *ngIf="!isLoggedIn">LogIn</div>
       </div>
     </ion-title>
     <ion-icon class="modalBack" ios="ios-arrow-back" md="md-arrow-back" (click)="closeModal()"></ion-icon>
@@ -12,8 +12,9 @@
 
 
 <ion-content padding>
-  <ion-icon class="canCommentIcon" *ngIf="user.logIn" ios="ios-chatbubbles" md="md-chatbubbles" (click)="commentToggle()"></ion-icon>
-  <div *ngIf="userComment" class="animated fadeInDown">
+  <ion-icon class="canCommentIcon" *ngIf="isLoggedIn" ios="ios-chatbubbles" md="md-chatbubbles" (click)="commentToggle()"></ion-icon>
+  <div *ngIf="userComment" class="backdrop"></div>
+  <div *ngIf="userComment" class="fornt animated fadeInDown">
     <ion-item>
       <ion-label floating>Comment</ion-label>
       <ion-textarea rows="4" maxLength="100" [(ngModel)]="user.comment" name="comment"></ion-textarea>
@@ -27,7 +28,7 @@
     </div>
     <ion-item>  
       <ion-label floating>Rating</ion-label>
-      1<ion-range [(ngModel)]="user.rating" (ngModelChange)="user.rating = $event" name="rating" min="1" max="5" color="secondary" pin="true"></ion-range>5
+      <ion-range [(ngModel)]="user.rating" (ngModelChange)="user.rating = $event" name="rating" min="1" max="5" color="secondary" pin="true"></ion-range>
     </ion-item>
     <br />
     <button ion-button (click)="comment(user)" class="SLbtn">Comment</button> 
@@ -42,8 +43,8 @@
             </li>
         </ul>
       </div>
-      <div class="commentText">{{item.comment}}</div><br />
-      <p>{{item.datatime | date: 'longDate'}}</p>
+      <div class="commentText animated fadeInLeft">{{item.comment}}</div><br />
+      <p class="animated fadeIn">{{item.datatime | date: 'longDate'}}</p>
     </ion-item>
     <div class="noComments" *ngIf="numOfComments < 1">
       <p>No Comments posted</p>
