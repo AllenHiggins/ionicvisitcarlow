@@ -51,7 +51,7 @@ import { UsercommentsProvider } from '../providers/usercomments/usercomments';
 import { AuthProvider } from '../providers/auth/auth';
 import { FormsModule } from '@angular/forms'; 
 import { GooglePlus } from '@ionic-native/google-plus';
-
+import { ReportcommentProvider } from '../providers/reportcomment/reportcomment';
 @NgModule({
   declarations: [
     MyApp,
@@ -122,7 +122,8 @@ import { GooglePlus } from '@ionic-native/google-plus';
     ContactsProvider,
     UsercommentsProvider,
     AuthProvider,
-    GooglePlus
+    GooglePlus,
+    ReportcommentProvider
 
   ]
 })

@@ -12,6 +12,12 @@
 
 
 <ion-content padding>
+
+
+
+
+
+<div *ngIf="!hasCommentted">
   <ion-icon class="canCommentIcon" *ngIf="isLoggedIn" ios="ios-chatbubbles" md="md-chatbubbles" (click)="commentToggle()"></ion-icon>
   <div *ngIf="userComment" class="backdrop"></div>
   <div *ngIf="userComment" class="fornt animated fadeInDown">
@@ -33,25 +39,43 @@
     <br />
     <button ion-button (click)="comment(user)" class="SLbtn">Comment</button> 
   </div>
+</div>
+
+
   <div *ngIf="!logInSelected" class="animated fadeIn">
-    <ion-item *ngFor="let item of commentsList">
-      <!--Get stars for rating-->
-      <div>
-        <ul class="stars animated fadeInRight">
-            <li *ngFor="let in of counter(item.rating)">
-              <ion-icon ios="ios-star" md="md-star"></ion-icon>
-            </li>
-        </ul>
-      </div>
-      <div class="commentText animated fadeInLeft">{{item.comment}}</div><br />
-      <p class="animated fadeIn">{{item.datatime | date: 'longDate'}}</p>
-    </ion-item>
+   <div>
+      <ion-item *ngFor="let item of commentsList" >
+
+
+      <div> 
+        <div>
+          <ul class="stars animated fadeInRight">
+              <li *ngFor="let in of counter(item.rating)">
+                <ion-icon ios="ios-star" md="md-star"></ion-icon>
+              </li>
+          </ul>
+        </div>
+        <div (click)="toggelReportOption()" class="commentText animated fadeInLeft">{{item.comment}}</div><br />
+        <p class="date animated fadeIn">
+          {{item.datatime | date: 'longDate'}}
+          <span class="commentLikes">
+            <ion-icon (click)="likeComment(item.id)" ios="ios-thumbs-up" md="md-thumbs-up"></ion-icon>
+            {{item.likes}}
+          </span>
+        </p>
+        <div *ngIf="isLoggedIn">
+          <p *ngIf="TReport" class="report" (click)="report(item.id)">Report</p>
+        </div>
+      </div> 
+
+
+      </ion-item>
+    </div>
     <div class="noComments" *ngIf="numOfComments < 1">
       <p>No Comments posted</p>
       <p>Be the first to Comment and rate this listing</p>
     </div>
   </div>
-
   <div *ngIf="logInSelected" class="animated fadeIn log">
     <ion-icon class="close" ios="ios-backspace" md="md-backspace" (click)="close()"></ion-icon>
     <br /><br />

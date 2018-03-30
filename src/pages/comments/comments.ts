@@ -16,6 +16,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Storage } from '@ionic/storage';
 import { HttpClient } from '@angular/common/http';
 import * as firebase from 'firebase/app';
+import { ReportcommentProvider } from '../../providers/reportcomment/reportcomment';
 //import {AuthCredential} from '@firebase/auth-types';
 
 
@@ -29,6 +30,7 @@ import { UsercommentsProvider } from '../../providers/usercomments/usercomments'
   templateUrl: 'comments.html',
 })
 export class CommentsPage {
+  reportList: any;
   list: any = [];
   id:number;
   numOfComments: number = 0;
@@ -41,6 +43,9 @@ export class CommentsPage {
   userComment: boolean = false;
   userCommentsList: any = [];
   hasCommentted: boolean = false;
+  likeCommentIcon: boolean;
+  isReported: boolean;
+  TReport: boolean = false;
 
   constructor(
     public navCtrl: NavController, 
@@ -54,10 +59,20 @@ export class CommentsPage {
     public ViewController: ViewController,
     public UsercommentsProvider: UsercommentsProvider,
     public Storage: Storage,
-    public http: HttpClient
-  
+    public http: HttpClient,
+    public reportcommentProvider: ReportcommentProvider
   ) {
     this.userOb = this.AngularFireAuth.authState; 
+  }
+
+  checkToken(){
+    this.Storage.get("code").then(result =>{ 
+      for(var i = 0; i < this.commentsList.length; i++){
+        if(this.commentsList[i].userID == result){
+          this.hasCommentted = true;
+        }
+      }
+    });
   }
 
   getAllComments(){
@@ -66,17 +81,19 @@ export class CommentsPage {
       this.commentsList = this.commentsList.Comments;
       this.numOfComments = this.commentsList.length;
       console.log("comments --->> : ", this.commentsList);
+      this.checkToken();
     });
   }
 
   ionViewWillLoad(){
-    console.log('ionWillLoad CommentsPage'); 
     this.id = this.navParams.get('id');
     this.user.rating = 1;
     this.getAllComments();
     this.getUserlogginStatus().then((respone) => {
       this.isLoggedIn = respone;
-      console.log("logged in ==== : ", this.isLoggedIn);
+    });
+    this.reportcommentProvider.getReportList().then(response =>{
+      this.reportList = response;
     });
   }
 
@@ -92,13 +109,6 @@ export class CommentsPage {
      console.log('ionViewDidLoad CommentsPage'); 
   }
 
-  makeCommentRating(){
-   // if logged in
-      // this.UsercommentsProvider.addComment
-   // else
-      // need to log in... 
-  }
-
   close(){
     this.logInSelected = false;
   }
@@ -109,7 +119,6 @@ export class CommentsPage {
         this.gplus.logout();
         this.Storage.set('loggin', false);
         this.isLoggedIn = false;
-        console.log("======= ",this.isLoggedIn);
         this.btnText = "LogIn";
         this.user.logIn = false;
         this.user.email = '';
@@ -131,7 +140,6 @@ export class CommentsPage {
     this.gplus.logout();
     this.Storage.set('loggin',false);
     this.isLoggedIn = false;
-    console.log("======= ",this.isLoggedIn);
     this.btnText = "LogIn";
     this.user.logIn = false;
     this.user.email = '';
@@ -144,9 +152,11 @@ export class CommentsPage {
       try{
         const result = await this.authProvider.userLogIn(user);
         if(result.email && result.uid){
+          // store result.uid
+          this.Storage.set("code",result.uid); 
           this.user.logIn = true;
           this.userComment = true;
-          this.btnText = "logOut";
+          this.btnText = "LogOut";
           this.logInSelected = false;
           this.Storage.set('loggin', true);
           this.isLoggedIn = true;
@@ -172,7 +182,6 @@ export class CommentsPage {
         }).present();
        
       }
-      console.log(this.user.logIn);
   }
 
   register(){
@@ -180,7 +189,6 @@ export class CommentsPage {
     modal.present();
   }
 
-/////////////////////////////////////////////////////////////////////////////////
   comment(user: User){
     if(user.comment == null){
       this.toast.create({
@@ -188,43 +196,42 @@ export class CommentsPage {
         duration: 3000
       }).present();
     }else{
-
-      // get comment from db in order of latest date frist - top 10
-
-      this.http.post("http://inframe.pythonanywhere.com/listing/comments/add",{
-        comment: user.comment,
-        listID: this.id,
-        rating: user.rating
-      }).subscribe(
-        res => {
-          console.log(res);
-          let date = new Date;
-          this.userComment = false;
-          let comments = {
-            comment:user.comment,
-            datatime:date,
-            rating:user.rating
+      this.Storage.get("code").then(result =>{ 
+        this.http.post("http://inframe.pythonanywhere.com/listing/comments/add",{
+          comment: user.comment,
+          listID: this.id,
+          rating: user.rating,
+          userID: result,
+          likes: 0
+        }).subscribe(
+          res => {
+            let date = new Date;
+            this.userComment = false;
+            let comments = {
+              comment:user.comment,
+              datatime:date,
+              rating:user.rating,
+              likes:0
+            }
+            this.commentsList.unshift(comments);
+            this.numOfComments = 1;
+            this.toast.create({
+              message: "Comment successful",
+              duration: 3000
+            }).present(); 
+          },
+          err => {
+            console.log("Error occured");
+            this.toast.create({
+              message: "Sorry, your comment could not be posted at this time",
+              duration: 3000
+            }).present();
           }
-          // to top of list (unshift) instead of push
-          this.commentsList.unshift(comments);
-          console.log(comments);
-          this.toast.create({
-            message: "Comment successful",
-            duration: 3000
-          }).present();
-          //this.getAllComments();  
-        },
-        err => {
-          console.log("Error occured");
-          this.toast.create({
-            message: "Sorry, your comment could not be posted at this time",
-            duration: 3000
-          }).present();
-        }
-      ); 
+        ); 
+      }); 
     }
   }
-
+  
   commentToggle(){
     this.user.comment = "";
     this.user.rating = 1;
@@ -232,6 +239,9 @@ export class CommentsPage {
   }
 
  /* async logInGoogle(){
+
+  // HOW TO GET UID FOR USER FOR COMMENTS...?
+
       try{
         const gplusUser = await this.gplus.login({
           'webClientId': '1001239315906-3260jiiieunkfl4uk5tlfisnrpp72d2a.apps.googleusercontent.com',
@@ -245,17 +255,21 @@ export class CommentsPage {
 
         if(result){
           this.user.logIn = true;
-          this.toast.create({
-            message: "LogIn Successful",
-            duration: 4000
-          }).present();
+          this.userComment = true;
           this.btnText = "LogOut";
           this.logInSelected = false;
+          this.Storage.set('loggin', true);
+          this.isLoggedIn = true;
+          this.toast.create({
+            message: "LogIn Successful",
+            duration: 3000
+          }).present();
         }
-        
       }catch(e){
         console.log(e);
         this.user.logIn = false;
+        this.user.logIn = false;
+        this.userComment = false;
         this.toast.create({
           message: "Sorry, unable to LogIn at this time.",
           duration: 3000
@@ -271,4 +285,33 @@ export class CommentsPage {
     return new Array(parseInt(i));
   }
 
+  toggelReportOption(){
+    this.TReport = !this.TReport;
+  }
+
+  report(id){
+    this.isReported = false;
+    for(var i = 0; i < this.reportList.length; i++){
+      if(this.reportList[i] == id){
+        this.isReported = true;
+      }
+    }  
+    if(this.isReported){
+      this.toast.create({
+        message: "You have already Reported this comment",
+        duration: 3000
+      }).present();
+    }else{
+      this.reportcommentProvider.report(id);
+    } 
+  }
+
+  likeComment(id){
+    // add to storge list
+    console.log(id);
+
+    // unlike comment
+
+    // user should not be able to like there own comments
+  }
 }
