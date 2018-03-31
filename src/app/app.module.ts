@@ -52,6 +52,9 @@ import { AuthProvider } from '../providers/auth/auth';
 import { FormsModule } from '@angular/forms'; 
 import { GooglePlus } from '@ionic-native/google-plus';
 import { ReportcommentProvider } from '../providers/reportcomment/reportcomment';
+
+
+
 @NgModule({
   declarations: [
     MyApp,

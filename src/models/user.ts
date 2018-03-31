@@ -4,4 +4,5 @@ export interface User {
     comment:string;
     rating:number;
     logIn: boolean;
+    name: string;
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { User } from '../../models/user';
 import { AuthProvider } from '../../providers/auth/auth';
+import { Storage } from '@ionic/storage';
 
 @IonicPage()
 @Component({
@@ -16,7 +17,9 @@ export class RegesterUserPage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     public authProvider: AuthProvider,
-    public toast: ToastController) {
+    public toast: ToastController,
+    public Storage: Storage
+  ) {
   }
 
   ionViewDidLoad() {
@@ -25,21 +28,21 @@ export class RegesterUserPage {
 
   async register(user: User){
     try{
-      const result = await this.authProvider.registerANewUser(user);
-      console.log(result);
-
-      if(result.email && result.uid){
-        this.toast.create({
-          message: "Registration Successful. Plase login to continue.",
-          duration: 4000
-        }).present();
-        this.navCtrl.pop();
-      }else{
-        this.toast.create({
-          message: "Sorry, unable to Registration at this time.",
-          duration: 3000
-        }).present();
-      }
+        const result = await this.authProvider.registerANewUser(user);
+        console.log(result);
+        if(result.email && result.uid){
+            this.Storage.set("name", user.name);
+            this.toast.create({
+              message: "Registration Successful. Plase login to continue.",
+              duration: 4000
+            }).present();
+            this.navCtrl.pop();
+        }else{
+          this.toast.create({
+            message: "Sorry, unable to Registration at this time.",
+            duration: 3000
+          }).present();
+        }
     }catch(e){
       console.log("+++",e);
       this.toast.create({
@@ -47,7 +50,6 @@ export class RegesterUserPage {
         duration: 3000
       }).present();
     }
-  
   }
 
   cancel(){

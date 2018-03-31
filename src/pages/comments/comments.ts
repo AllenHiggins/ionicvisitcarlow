@@ -31,6 +31,7 @@ import { UsercommentsProvider } from '../../providers/usercomments/usercomments'
 })
 export class CommentsPage {
   reportList: any;
+  likeList: any = [];
   list: any = [];
   id:number;
   numOfComments: number = 0;
@@ -46,6 +47,8 @@ export class CommentsPage {
   likeCommentIcon: boolean;
   isReported: boolean;
   TReport: boolean = false;
+  likesRep: any;
+  like: boolean;
 
   constructor(
     public navCtrl: NavController, 
@@ -304,14 +307,5 @@ export class CommentsPage {
     }else{
       this.reportcommentProvider.report(id);
     } 
-  }
-
-  likeComment(id){
-    // add to storge list
-    console.log(id);
-
-    // unlike comment
-
-    // user should not be able to like there own comments
   }
 }

@@ -1,13 +1,5 @@
 page-comments {
 
-    .commentLikes{
-        font-size: 10px;
-        float: right;
-        margin-right: 10px;
-        ion-icon{
-            font-size: 14px; 
-        }
-    }
 
     .noComments{
         margin-top: 100px;
@@ -23,8 +15,9 @@ page-comments {
     }
 
     .report{
-        padding-top: 5px;
-        font-size: 10px;
+        font-size: 12px;
+        float: right;
+        margin-right: 10px;
     }
 
     .backdrop{

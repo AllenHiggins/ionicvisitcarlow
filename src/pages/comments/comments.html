@@ -12,11 +12,6 @@
 
 
 <ion-content padding>
-
-
-
-
-
 <div *ngIf="!hasCommentted">
   <ion-icon class="canCommentIcon" *ngIf="isLoggedIn" ios="ios-chatbubbles" md="md-chatbubbles" (click)="commentToggle()"></ion-icon>
   <div *ngIf="userComment" class="backdrop"></div>
@@ -41,14 +36,11 @@
   </div>
 </div>
 
-
   <div *ngIf="!logInSelected" class="animated fadeIn">
    <div>
       <ion-item *ngFor="let item of commentsList" >
-
-
       <div> 
-        <div>
+        <div (click)="toggelReportOption()">
           <ul class="stars animated fadeInRight">
               <li *ngFor="let in of counter(item.rating)">
                 <ion-icon ios="ios-star" md="md-star"></ion-icon>
@@ -58,17 +50,11 @@
         <div (click)="toggelReportOption()" class="commentText animated fadeInLeft">{{item.comment}}</div><br />
         <p class="date animated fadeIn">
           {{item.datatime | date: 'longDate'}}
-          <span class="commentLikes">
-            <ion-icon (click)="likeComment(item.id)" ios="ios-thumbs-up" md="md-thumbs-up"></ion-icon>
-            {{item.likes}}
+          <span *ngIf="isLoggedIn">
+            <span *ngIf="TReport" class="report" (click)="report(item.id)">Report</span>
           </span>
-        </p>
-        <div *ngIf="isLoggedIn">
-          <p *ngIf="TReport" class="report" (click)="report(item.id)">Report</p>
-        </div>
+        </p> 
       </div> 
-
-
       </ion-item>
     </div>
     <div class="noComments" *ngIf="numOfComments < 1">
@@ -102,5 +88,4 @@
       <button ion-button color="light" (click)="register()">Register</button>
     </div>  
   </div>
-
 </ion-content>
