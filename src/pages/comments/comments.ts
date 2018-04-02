@@ -176,7 +176,8 @@ export class CommentsPage {
           }).present();
         }else{
           this.user.logIn = false;
-          this.user.logIn = false;
+          this.user.name = "";
+          this.isLoggedIn = false;
           this.userComment = false;
           this.toast.create({
             message: "Sorry, unable to LogIn at this time.",
@@ -207,14 +208,14 @@ export class CommentsPage {
       }).present();
     }else{
       this.Storage.get("code").then(code =>{ 
-        this.Storage.get("name").then(name =>{
+          let userLoggedIn = this.AngularFireAuth.auth.currentUser;
           this.http.post("http://inframe.pythonanywhere.com/listing/comments/add",{
             comment: user.comment,
             listID: this.id,
             rating: user.rating,
             userID: code,
             likes: 0,
-            name: name
+            name: userLoggedIn.displayName
           }).subscribe(
             res => {
               let date = new Date;
@@ -224,7 +225,7 @@ export class CommentsPage {
                 datatime:date,
                 rating:user.rating,
                 likes:0,
-                name: name
+                name: userLoggedIn.displayName
               }
               this.commentsList.unshift(comments);
               this.numOfComments = 1;
@@ -241,7 +242,6 @@ export class CommentsPage {
               }).present();
             }
           );
-        });
       }); 
     }
   }
@@ -252,10 +252,7 @@ export class CommentsPage {
     this.userComment = !this.userComment;
   }
 
- /* async logInGoogle(){
-
-  // HOW TO GET UID FOR USER FOR COMMENTS...?
-
+ async logInGoogle(){
       try{
         const gplusUser = await this.gplus.login({
           'webClientId': '1001239315906-3260jiiieunkfl4uk5tlfisnrpp72d2a.apps.googleusercontent.com',
@@ -263,11 +260,30 @@ export class CommentsPage {
           'scopes': 'profile email'
         })
 
-        const result = await this.AngularFireAuth.auth.signInWithCredential(
+        const result = await firebase.auth().signInWithCredential(
           firebase.auth.GoogleAuthProvider.credential(gplusUser.idToken)
         )
 
-        if(result){
+        if(result.email && result.uid){
+
+          // Updates the user attributes:
+          let userLoggedIn = this.AngularFireAuth.auth.currentUser;
+          userLoggedIn.updateProfile({
+            displayName: result.displayName,
+            photoURL: null
+          }).then(function() {
+            // Profile updated successfully!
+            let displayName = userLoggedIn.displayName;
+            if(displayName != null){
+              this.Storage.set("name", result.displayName);
+            }else{
+              this.Storage.set("name", "Visit Carlow User");
+            }
+          }, function(error) {
+            // An error happened.
+            console.log(error);
+          });
+          this.Storage.set("code",result.uid); 
           this.user.logIn = true;
           this.userComment = true;
           this.btnText = "LogOut";
@@ -282,14 +298,15 @@ export class CommentsPage {
       }catch(e){
         console.log(e);
         this.user.logIn = false;
-        this.user.logIn = false;
+        this.isLoggedIn = false;
         this.userComment = false;
+        this.user.name = "";
         this.toast.create({
           message: "Sorry, unable to LogIn at this time.",
           duration: 3000
         }).present();
       }
-  }*/
+  }
 
   closeModal(){
     this.ViewController.dismiss();

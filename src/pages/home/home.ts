@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams,MenuController } from 'ionic-angular';
+import { NavController, NavParams,MenuController, LoadingController } from 'ionic-angular';
 import { CategoriesProvider } from '../../providers/categories/categories';
 import { SubpagePage } from '../subpage/subpage';
 import { ListingsPage } from '../listings/listings';
@@ -22,7 +22,8 @@ export class HomePage {
     public navParams: NavParams,
     public CategoriesProvider: CategoriesProvider,
     public networkProvider: NetworkProvider,
-    public menuController: MenuController
+    public menuController: MenuController,
+    public loadingCtrl: LoadingController
   ){
     this.offLine = this.networkProvider.con;
   }
@@ -45,9 +46,21 @@ export class HomePage {
   }
 
   ionViewWillEnter(){
-    this.menuController.swipeEnable(true);
-    this.loadData();
-    
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    loading.present().then(() =>{
+      this.menuController.swipeEnable(true);
+      this.CategoriesProvider.getCategories().subscribe(
+        (response) => {
+          this.list = response; 
+          this.empty = false;
+          loading.dismiss();
+        },(err) => {
+          this.empty = true;
+          console.log("error");
+      }); 
+    });
   }
 
   loadData(){

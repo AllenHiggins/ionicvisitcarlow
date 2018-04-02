@@ -274,3 +274,43 @@ ion-card{
         color:rgb(187, 185, 185);
     }
 }
+
+
+.ios{
+    .LOGIN{
+        width: 65px;
+        right: 20px;
+        top: 32px;
+        position: absolute;
+    }
+
+    .searchIcon{
+        width: 65px;
+        right: 5px;
+        top: 32px;
+        position: absolute;
+    }
+
+    ion-icon{
+        color:none;
+    }
+
+    .statusbar{
+        background-color: lightgray;
+    }
+
+    .toolbar-ios {
+        padding: 4px;
+        padding-left: 4px;
+        padding-right: 4px;
+        min-height: 54px;
+        padding-top: calc(constant(safe-area-inset-top) + 4px);
+        padding-top: calc(env(safe-area-inset-top) + 4px);
+        min-height: calc(65px + 20px);
+    }
+
+    .scroll-content{ 
+        padding-top: 0px;
+        margin-top: 0px;
+    }
+}
