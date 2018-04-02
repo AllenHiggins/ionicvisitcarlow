@@ -48,11 +48,7 @@
           </ul>
         </div>
         <div (click)="toggelReportOption()" class="commentText animated fadeInLeft">{{item.comment}}</div><br />
-        
-        
         <p class="date">{{item.name}}</p>
-        
-        
         <p class="date animated fadeIn">
           {{item.datatime | date: 'longDate'}}
           <span *ngIf="isLoggedIn">

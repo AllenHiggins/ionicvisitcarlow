@@ -74,6 +74,7 @@ export class CommentsPage {
   }
 
   checkToken(){
+    this.hasCommentted = false;
     this.Storage.get("code").then(result =>{ 
       for(var i = 0; i < this.commentsList.length; i++){
         if(this.commentsList[i].userID == result){
@@ -133,6 +134,7 @@ export class CommentsPage {
         this.user.password = '';
         this.logInSelected = false;
         this.userComment = false; 
+        this.user.name = "";
       }
       this.webLogOut();
       this.toast.create({
@@ -162,6 +164,7 @@ export class CommentsPage {
         if(result.email && result.uid){
           // store result.uid
           console.log("display Name: ",result.displayName);
+          this.Storage.remove("code");
           this.Storage.set("code",result.uid); 
           this.user.logIn = true;
           this.Storage.set("name", result.displayName);
@@ -170,6 +173,9 @@ export class CommentsPage {
           this.logInSelected = false;
           this.Storage.set('loggin', true);
           this.isLoggedIn = true;
+
+          this.checkToken();
+
           this.toast.create({
             message: "LogIn Successful",
             duration: 4000
@@ -201,7 +207,7 @@ export class CommentsPage {
   }
 
   comment(user: User){
-    if(user.comment == null){
+    if(user.comment == ''){
       this.toast.create({
         message: "Plase enter a comment",
         duration: 3000
@@ -229,6 +235,9 @@ export class CommentsPage {
               }
               this.commentsList.unshift(comments);
               this.numOfComments = 1;
+
+              this.hasCommentted = true;
+
               this.toast.create({
                 message: "Comment successful",
                 duration: 3000
@@ -290,6 +299,9 @@ export class CommentsPage {
           this.logInSelected = false;
           this.Storage.set('loggin', true);
           this.isLoggedIn = true;
+
+          this.checkToken();
+
           this.toast.create({
             message: "LogIn Successful",
             duration: 3000
