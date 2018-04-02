@@ -48,6 +48,11 @@
           </ul>
         </div>
         <div (click)="toggelReportOption()" class="commentText animated fadeInLeft">{{item.comment}}</div><br />
+        
+        
+        <p class="date">{{item.name}}</p>
+        
+        
         <p class="date animated fadeIn">
           {{item.datatime | date: 'longDate'}}
           <span *ngIf="isLoggedIn">
@@ -86,6 +91,7 @@
       <br />
       <button ion-button (click)="logIn(user)" class="SLbtn">LogIn</button>
       <button ion-button color="light" (click)="register()">Register</button>
+      <button ion-button clear (click)="presentPrompt()">Forgot Password</button>
     </div>  
   </div>
 </ion-content>

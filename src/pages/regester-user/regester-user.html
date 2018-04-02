@@ -5,6 +5,10 @@
 </ion-header>
 <ion-content padding class="animated fadeIn log">
     <ion-item>
+        <ion-label floating>Name</ion-label>
+        <ion-input type="text" [(ngModel)]="user.name"></ion-input>
+    </ion-item>
+    <ion-item>
         <ion-label floating>Email</ion-label>
         <ion-input type="text" [(ngModel)]="user.email"></ion-input>
     </ion-item>

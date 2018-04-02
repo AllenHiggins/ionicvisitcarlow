@@ -29,7 +29,30 @@ export class AuthProvider {
     try{
       const result = await this.AFireAuth.auth.createUserWithEmailAndPassword(user.email.trim(), user.password.trim());
       console.log(result); 
+      let userLoggedIn = this.AFireAuth.auth.currentUser;
+      // Updates the user attributes:
+      userLoggedIn.updateProfile({
+        displayName: user.name.trim(),
+        photoURL: null
+      }).then(function() {
+        // Profile updated successfully!
+        let displayName = userLoggedIn.displayName;
+        console.log("User Name: ", displayName);
+      }, function(error) {
+        // An error happened.
+        this.Storage.set("name", "Visit Carlow User");
+        console.log(error);
+      });
       return result;    
+    }catch(e){
+      return e;
+    }
+  }
+
+  async forgotPassword(email){
+    try{
+      const result = await this.AFireAuth.auth.sendPasswordResetEmail(email);
+      return result;
     }catch(e){
       return e;
     }

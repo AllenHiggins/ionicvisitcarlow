@@ -31,7 +31,6 @@ export class RegesterUserPage {
         const result = await this.authProvider.registerANewUser(user);
         console.log(result);
         if(result.email && result.uid){
-            this.Storage.set("name", user.name);
             this.toast.create({
               message: "Registration Successful. Plase login to continue.",
               duration: 4000

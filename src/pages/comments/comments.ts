@@ -6,7 +6,8 @@ import {
   ModalController,
   ToastController,
   Platform,
-  ViewController 
+  ViewController,
+  AlertController 
 } from 'ionic-angular';
 import { logInPage } from '../logIn/logInPage';
 import { User } from '../../models/user';
@@ -17,6 +18,8 @@ import { Storage } from '@ionic/storage';
 import { HttpClient } from '@angular/common/http';
 import * as firebase from 'firebase/app';
 import { ReportcommentProvider } from '../../providers/reportcomment/reportcomment';
+
+
 //import {AuthCredential} from '@firebase/auth-types';
 
 
@@ -49,6 +52,7 @@ export class CommentsPage {
   TReport: boolean = false;
   likesRep: any;
   like: boolean;
+  changePassword: boolean;
 
   constructor(
     public navCtrl: NavController, 
@@ -63,7 +67,8 @@ export class CommentsPage {
     public UsercommentsProvider: UsercommentsProvider,
     public Storage: Storage,
     public http: HttpClient,
-    public reportcommentProvider: ReportcommentProvider
+    public reportcommentProvider: ReportcommentProvider,
+    private alertCtrl: AlertController
   ) {
     this.userOb = this.AngularFireAuth.authState; 
   }
@@ -156,8 +161,10 @@ export class CommentsPage {
         const result = await this.authProvider.userLogIn(user);
         if(result.email && result.uid){
           // store result.uid
+          console.log("display Name: ",result.displayName);
           this.Storage.set("code",result.uid); 
           this.user.logIn = true;
+          this.Storage.set("name", result.displayName);
           this.userComment = true;
           this.btnText = "LogOut";
           this.logInSelected = false;
@@ -199,38 +206,42 @@ export class CommentsPage {
         duration: 3000
       }).present();
     }else{
-      this.Storage.get("code").then(result =>{ 
-        this.http.post("http://inframe.pythonanywhere.com/listing/comments/add",{
-          comment: user.comment,
-          listID: this.id,
-          rating: user.rating,
-          userID: result,
-          likes: 0
-        }).subscribe(
-          res => {
-            let date = new Date;
-            this.userComment = false;
-            let comments = {
-              comment:user.comment,
-              datatime:date,
-              rating:user.rating,
-              likes:0
+      this.Storage.get("code").then(code =>{ 
+        this.Storage.get("name").then(name =>{
+          this.http.post("http://inframe.pythonanywhere.com/listing/comments/add",{
+            comment: user.comment,
+            listID: this.id,
+            rating: user.rating,
+            userID: code,
+            likes: 0,
+            name: name
+          }).subscribe(
+            res => {
+              let date = new Date;
+              this.userComment = false;
+              let comments = {
+                comment:user.comment,
+                datatime:date,
+                rating:user.rating,
+                likes:0,
+                name: name
+              }
+              this.commentsList.unshift(comments);
+              this.numOfComments = 1;
+              this.toast.create({
+                message: "Comment successful",
+                duration: 3000
+              }).present(); 
+            },
+            err => {
+              console.log("Error occured");
+              this.toast.create({
+                message: "Sorry, your comment could not be posted at this time",
+                duration: 3000
+              }).present();
             }
-            this.commentsList.unshift(comments);
-            this.numOfComments = 1;
-            this.toast.create({
-              message: "Comment successful",
-              duration: 3000
-            }).present(); 
-          },
-          err => {
-            console.log("Error occured");
-            this.toast.create({
-              message: "Sorry, your comment could not be posted at this time",
-              duration: 3000
-            }).present();
-          }
-        ); 
+          );
+        });
       }); 
     }
   }
@@ -293,19 +304,110 @@ export class CommentsPage {
   }
 
   report(id){
-    this.isReported = false;
-    for(var i = 0; i < this.reportList.length; i++){
-      if(this.reportList[i] == id){
-        this.isReported = true;
-      }
-    }  
-    if(this.isReported){
-      this.toast.create({
-        message: "You have already Reported this comment",
-        duration: 3000
-      }).present();
-    }else{
-      this.reportcommentProvider.report(id);
+    let alert = this.alertCtrl.create({
+      title: 'Report Comment',
+      message: 'Are you sure that you would like to report this comment?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Report',
+          handler: () => {
+             console.log('report comment clicked');
+             this.isReported = false;
+             for(var i = 0; i < this.reportList.length; i++){
+               if(this.reportList[i] == id){
+                 this.isReported = true;
+               }
+             }  
+             if(this.isReported){
+               this.toast.create({
+                 message: "You have already Reported this comment",
+                 duration: 3000
+               }).present();
+             }else{
+               this.reportcommentProvider.report(id);
+             } 
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  async fPassword(email){
+    try{
+      const result = await this.authProvider.forgotPassword(email);
+      console.log(result.code);
+      const rep = result.code;
+      return rep;
+    }catch(e){
+      console.log(e);
     } 
   }
+
+  presentPrompt() {
+    let alert = this.alertCtrl.create({
+      title: 'Reset Password',
+      inputs: [
+        {
+          name: 'Email',
+          placeholder: 'Email'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Reset',
+          handler: data => {
+            if (data.Email.trim()) {
+              this.fPassword(data.Email.trim()).then((res)=>{
+                console.log("res ", res);
+                if(res == "auth/invalid-email"){    
+                   this.msgPrompt("Invalid Email", "Check the email address that you entered is correct", "Ok"); 
+                   return false;
+                }else if(res == "auth/network-request-failed"){
+                  this.msgPrompt("Sorry", "Cannot send a reset email at this time", "Ok");
+                  return false;
+                }else if(res == "auth/user-not-found"){
+                  this.msgPrompt("Sorry", "Cannot send a reset email at this time", "Ok");
+                  return false;
+                }else{
+                  this.msgPrompt("Email Sent", "Check your email to continue to change your password", "Ok");    
+                }
+            });
+              
+            } else {
+              this.msgPrompt("Sorry", "Cannot send a reset email at this time", "Ok");
+              return false;
+            }
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  msgPrompt(title, msg, btn) {
+    let alert = this.alertCtrl.create({
+      title: title,
+      message: msg,
+      buttons: [btn]
+    });
+    alert.present();
+  }
+
+
+
 }
