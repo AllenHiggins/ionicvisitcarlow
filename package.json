@@ -100,7 +100,9 @@
       "cordova-universal-links-plugin": {},
       "cordova-plugin-browsertab": {},
       "cordova-plugin-whitelist": {},
-      "cordova-plugin-googleplus": {},
+      "cordova-plugin-googleplus": {
+        "REVERSED_CLIENT_ID": "com.googleusercontent.apps.1001239315906-nfhaj7lid1i2o6oujveeamf9kt671vnv"
+      },
       "cordova-android-play-services-gradle-release": {
         "PLAY_SERVICES_VERSION": "11.8.0"
       },

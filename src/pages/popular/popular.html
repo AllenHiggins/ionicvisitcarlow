@@ -8,7 +8,7 @@
     <ion-refresher (ionRefresh)="doRefresh($event)">
       <ion-spinner name='dots' class="cardImg"></ion-spinner>
     </ion-refresher>
-    <ion-grid>
+    <ion-grid style="padding-bottom: 80px">
       <ion-row>
         <ion-col col-12 col-md-4 *ngFor="let item of list.popular"
             (click)="itemTapped($event, item)">  
@@ -23,5 +23,8 @@
           </ion-card> 
         </ion-col>
       </ion-row>
-    </ion-grid>
+    </ion-grid> 
+    
   </ion-content>
+  <footer></footer>
+ 

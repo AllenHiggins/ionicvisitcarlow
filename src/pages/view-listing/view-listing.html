@@ -7,6 +7,9 @@
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-spinner name='dots' class="cardImg"></ion-spinner>
   </ion-refresher>
+
+  <div style="padding-bottom: 80px">
+
     <div class="par">
       <img src={{imagePath}} class="viewListingImg"/>
     </div>
@@ -89,6 +92,6 @@
       <hr>
       <div style=" white-space: pre-wrap;" class="txtBody">{{text}}</div>  
     </div>
-</ion-content>    
-
+  </div>
+</ion-content>
 

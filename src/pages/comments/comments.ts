@@ -235,9 +235,7 @@ export class CommentsPage {
               }
               this.commentsList.unshift(comments);
               this.numOfComments = 1;
-
               this.hasCommentted = true;
-
               this.toast.create({
                 message: "Comment successful",
                 duration: 3000

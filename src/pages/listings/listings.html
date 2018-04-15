@@ -10,7 +10,7 @@
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-spinner name='dots' class="cardImg"></ion-spinner>
   </ion-refresher>
-  <ion-grid>
+  <ion-grid style="padding-bottom: 80px">
     <ion-row>
       <ion-col col-12 col-md-4 *ngFor="let item of list.cards"
           (click)="itemTapped($event, item)">  
@@ -22,8 +22,9 @@
               <p *ngIf="item.likes != 0">Likes: {{item.likes}}</p>
             </ion-card-title>
           </ion-card-content>
-        </ion-card> 
+        </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
+<footer></footer>

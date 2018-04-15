@@ -15,7 +15,6 @@ export class LikesProvider {
   addToLikes(place){
     this.list.push(place);
     this.Storage.set('likeList', this.list);
-    console.log("--->>> ", place.id);
     return this.http.get("http://inframe.pythonanywhere.com/likes/add/" + place.id);
   }
 

@@ -5,9 +5,10 @@ import { ListingsPage } from './listings';
 @NgModule({
   declarations: [
     ListingsPage,
+    
   ],
   imports: [
-    IonicPageModule.forChild(ListingsPage),
+    IonicPageModule.forChild(ListingsPage)
   ],
 })
 export class ListingsPageModule {}
